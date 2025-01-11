@@ -33,6 +33,7 @@ struct ThoughtRecordView: View {
             }
             .navigationTitle("Restructuration cognitive")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingNewRecord = true }) {
@@ -230,22 +231,40 @@ struct DistortionCard: View {
     let distortion: CognitiveDistortion
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 6) {
             Text(distortion.rawValue)
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
+                .fixedSize(horizontal: false, vertical: true)
             
-            Text(distortion.description)
+            Text(shortDescription)
                 .font(.caption2)
                 .foregroundColor(.secondary)
-                .lineLimit(3)
+                .fixedSize(horizontal: false, vertical: true)
                 .multilineTextAlignment(.leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
+        .frame(maxWidth: .infinity, minHeight: 80, alignment: .leading)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
         .background(Color(.quaternarySystemFill))
         .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+    
+    private var shortDescription: String {
+        let descriptions: [CognitiveDistortion: String] = [
+            .allOrNothing: "Voir en noir ou blanc",
+            .overgeneralization: "Généraliser un événement",
+            .mentalFilter: "Focus sur le négatif",
+            .discountingPositive: "Ignorer le positif",
+            .jumpingToConclusions: "Conclusions hâtives",
+            .magnification: "Exagérer les problèmes",
+            .emotionalReasoning: "Émotions = réalité",
+            .shouldStatements: "Tyrannies du 'il faut'",
+            .labeling: "Étiquetage négatif",
+            .personalization: "Tout est ma faute"
+        ]
+        return descriptions[distortion] ?? distortion.description
     }
 }
 
