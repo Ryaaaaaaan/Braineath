@@ -45,6 +45,7 @@ struct MoodJournalView: View {
             }
             .navigationTitle("Journal d'humeur")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingNewEntry = true }) {

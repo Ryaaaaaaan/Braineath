@@ -59,6 +59,7 @@ struct PrivateSpaceView: View {
             }
             .navigationTitle("Espaces privés")
             .navigationBarTitleDisplayMode(.large)
+            .toolbarBackground(.hidden, for: .navigationBar)
         }
     }
     
