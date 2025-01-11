@@ -29,11 +29,15 @@ struct DashboardView: View {
     ]
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    // Header avec accès rapide urgence
-                    headerSection
+        NavigationStack {
+            ZStack(alignment: .top) {
+                ScrollView {
+                    LazyVStack(spacing: 20) {
+                        // Espace pour header
+                        Spacer(minLength: 50)
+                        
+                        // Header avec accès rapide urgence
+                        headerSection
                     
                     // Citation motivante du jour
                     quoteSection
@@ -51,24 +55,17 @@ struct DashboardView: View {
                     insightsSection
                     
                     Spacer(minLength: 100)
+                    }
+                    .padding()
                 }
-                .padding()
+                .refreshable {
+                    refreshData()
+                }
+                
+                // Header blurred  
+                blurredHeader
             }
-            .navigationTitle("Braineath")
-            .navigationBarTitleDisplayMode(.large)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(.systemBackground),
-                        Color(.systemBackground).opacity(0.8)
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
-            .refreshable {
-                refreshData()
-            }
+            .navigationBarHidden(true)
         }
         .sheet(isPresented: $showingEmergencyView) {
             EmergencyModeView()
@@ -82,6 +79,54 @@ struct DashboardView: View {
             moodViewModel.loadRecentMoods()
             breathingViewModel.loadRecentSessions()
         }
+    }
+    
+    private var blurredHeader: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                
+                // Bouton SOS d'urgence - design clair et reconnaissable
+                Button(action: { showingEmergencyView = true }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        Text("SOS")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(
+                        Capsule()
+                            .fill(
+                                LinearGradient(
+                                    colors: [.red, .red.opacity(0.8)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .shadow(color: .red.opacity(0.5), radius: 8, x: 0, y: 4)
+                    )
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 50)
+            
+            // Gradient de fondu vers le bas uniquement
+            LinearGradient(
+                gradient: Gradient(stops: [
+                    .init(color: Color(.systemBackground).opacity(0.7), location: 0),
+                    .init(color: Color.clear, location: 1)
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .frame(height: 30)
+        }
+        .ignoresSafeArea(edges: .top)
     }
     
     private var headerSection: some View {
