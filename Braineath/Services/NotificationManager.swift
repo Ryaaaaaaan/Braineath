@@ -1,0 +1,159 @@
+//
+//  NotificationManager.swift
+//  Braineath
+//
+//  Created by Ryan Zemri on 10/09/2025.
+//
+
+import Foundation
+import UserNotifications
+import UIKit
+
+class NotificationManager: NSObject, ObservableObject {
+    static let shared = NotificationManager()
+    
+    @Published var isAuthorized = false
+    
+    override init() {
+        super.init()
+        checkAuthorizationStatus()
+    }
+    
+    func requestAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            DispatchQueue.main.async {
+                self.isAuthorized = granted
+            }
+            
+            if granted {
+                self.scheduleDefaultReminders()
+            }
+        }
+    }
+    
+    private func checkAuthorizationStatus() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                self.isAuthorized = settings.authorizationStatus == .authorized
+            }
+        }
+    }
+    
+    func scheduleDefaultReminders() {
+        // Rappel du matin pour définir une intention
+        scheduleDailyNotification(
+            identifier: "morning-intention",
+            title: "🌅 Nouvelle journée",
+            body: "Prenez un moment pour définir votre intention du jour",
+            hour: 8,
+            minute: 0
+        )
+        
+        // Rappel de l'après-midi pour une pause respiration
+        scheduleDailyNotification(
+            identifier: "afternoon-breathing",
+            title: "🫁 Pause respiration",
+            body: "Quelques minutes de respiration consciente pour recentrer votre énergie",
+            hour: 14,
+            minute: 30
+        )
+        
+        // Rappel du soir pour le journal émotionnel
+        scheduleDailyNotification(
+            identifier: "evening-journal",
+            title: "📝 Reflet de la journée",
+            body: "Comment vous êtes-vous senti aujourd'hui ? Prenez note de vos émotions",
+            hour: 20,
+            minute: 0
+        )
+    }
+    
+    private func scheduleDailyNotification(identifier: String, title: String, body: String, hour: Int, minute: Int) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        content.categoryIdentifier = "BRAINEATH_REMINDER"
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Failed to schedule notification \(identifier): \(error)")
+            }
+        }
+    }
+    
+    func scheduleEmergencyFollowUp() {
+        let content = UNMutableNotificationContent()
+        content.title = "💙 Comment allez-vous ?"
+        content.body = "Prenez un moment pour évaluer comment vous vous sentez maintenant"
+        content.sound = .default
+        content.categoryIdentifier = "EMERGENCY_FOLLOWUP"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false) // 1 heure après
+        let request = UNNotificationRequest(identifier: "emergency-followup-\(UUID())", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    func scheduleBreathingReminder(after minutes: Int) {
+        let content = UNMutableNotificationContent()
+        content.title = "🧘‍♀️ Moment respiration"
+        content.body = "Il est temps de reprendre quelques respirations conscientes"
+        content.sound = .default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(minutes * 60), repeats: false)
+        let request = UNNotificationRequest(identifier: "breathing-reminder-\(UUID())", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    func cancelAllNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
+    func cancelNotification(identifier: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+}
+
+extension NotificationManager: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let identifier = response.notification.request.identifier
+        
+        switch response.actionIdentifier {
+        case UNNotificationDefaultActionIdentifier:
+            // L'utilisateur a tapé sur la notification
+            handleNotificationTap(identifier: identifier)
+        default:
+            break
+        }
+        
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Afficher la notification même si l'app est au premier plan
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    private func handleNotificationTap(identifier: String) {
+        // Logique pour naviguer vers la bonne section de l'app
+        if identifier.contains("morning-intention") {
+            // Naviguer vers les intentions
+        } else if identifier.contains("afternoon-breathing") {
+            // Naviguer vers les exercices de respiration
+        } else if identifier.contains("evening-journal") {
+            // Naviguer vers le journal émotionnel
+        } else if identifier.contains("emergency-followup") {
+            // Naviguer vers le suivi d'urgence
+        }
+    }
+}

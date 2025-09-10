@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
+    <!-- Entrée du journal émotionnel quotidien -->
+    <entity name="MoodEntry" representedClassName="MoodEntry" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="primaryEmotion" optional="NO" attributeType="String"/>
+        <attribute name="emotionIntensity" optional="NO" attributeType="Integer 16" minValueString="1" maxValueString="10" defaultValueString="5" usesScalarValueType="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="triggers" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="energyLevel" optional="NO" attributeType="Integer 16" minValueString="1" maxValueString="10" defaultValueString="5" usesScalarValueType="YES"/>
+        <attribute name="stressLevel" optional="NO" attributeType="Integer 16" minValueString="1" maxValueString="10" defaultValueString="5" usesScalarValueType="YES"/>
+        <attribute name="sleepQuality" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="weatherImpact" optional="YES" attributeType="String"/>
+        <relationship name="breathingSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BreathingSession" inverseName="moodEntry" inverseEntity="BreathingSession"/>
+    </entity>
+
+    <!-- Sessions de respiration guidée -->
+    <entity name="BreathingSession" representedClassName="BreathingSession" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="duration" optional="NO" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="breathingPattern" optional="NO" attributeType="String"/>
+        <attribute name="completionPercentage" optional="NO" attributeType="Double" minValueString="0" maxValueString="100" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="moodBefore" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="moodAfter" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="moodEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoodEntry" inverseName="breathingSession" inverseEntity="MoodEntry"/>
+    </entity>
+
+    <!-- Pensées et restructuration cognitive (TCC) -->
+    <entity name="ThoughtRecord" representedClassName="ThoughtRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="situation" optional="NO" attributeType="String"/>
+        <attribute name="automaticThought" optional="NO" attributeType="String"/>
+        <attribute name="emotionBefore" optional="NO" attributeType="String"/>
+        <attribute name="intensityBefore" optional="NO" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="cognitiveDistortions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="balancedThought" optional="YES" attributeType="String"/>
+        <attribute name="emotionAfter" optional="YES" attributeType="String"/>
+        <attribute name="intensityAfter" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="actionPlan" optional="YES" attributeType="String"/>
+    </entity>
+
+    <!-- Entrées de gratitude -->
+    <entity name="GratitudeEntry" representedClassName="GratitudeEntry" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gratitudeText" optional="NO" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="emotionGenerated" optional="YES" attributeType="String"/>
+        <attribute name="isPrivate" optional="NO" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+    </entity>
+
+    <!-- Intentions quotidiennes -->
+    <entity name="DailyIntention" representedClassName="DailyIntention" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="intentionText" optional="NO" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="isCompleted" optional="NO" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="reflection" optional="YES" attributeType="String"/>
+    </entity>
+
+    <!-- Sessions d'urgence émotionnelle -->
+    <entity name="EmergencySession" representedClassName="EmergencySession" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="date" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="triggerEmotion" optional="NO" attributeType="String"/>
+        <attribute name="intensityBefore" optional="NO" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="techniquesUsed" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="duration" optional="NO" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="intensityAfter" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="10" usesScalarValueType="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+    </entity>
+
+    <!-- Préférences utilisateur -->
+    <entity name="UserPreferences" representedClassName="UserPreferences" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="preferredTheme" optional="NO" attributeType="String" defaultValueString="adaptive"/>
+        <attribute name="notificationsEnabled" optional="NO" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="reminderTimes" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Date]"/>
+        <attribute name="preferredBreathingPattern" optional="YES" attributeType="String"/>
+        <attribute name="soundEnabled" optional="NO" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="hapticEnabled" optional="NO" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="privacyLevel" optional="NO" attributeType="String" defaultValueString="high"/>
+    </entity>
+
+    <!-- Progression et achievements -->
+    <entity name="Achievement" representedClassName="Achievement" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="achievementType" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="achievementDescription" optional="NO" attributeType="String"/>
+        <attribute name="dateEarned" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isUnlocked" optional="NO" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="progress" optional="NO" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="requiredProgress" optional="NO" attributeType="Integer 32" usesScalarValueType="YES"/>
+    </entity>
+
+    <elements>
+        <element name="MoodEntry" positionX="-63" positionY="-18" width="128" height="194"/>
+        <element name="BreathingSession" positionX="144" positionY="-18" width="128" height="164"/>
+        <element name="ThoughtRecord" positionX="-63" positionY="162" width="128" height="194"/>
+        <element name="GratitudeEntry" positionX="144" positionY="162" width="128" height="119"/>
+        <element name="DailyIntention" positionX="-63" positionY="342" width="128" height="119"/>
+        <element name="EmergencySession" positionX="144" positionY="342" width="128" height="149"/>
+        <element name="UserPreferences" positionX="351" positionY="-18" width="128" height="149"/>
+        <element name="Achievement" positionX="351" positionY="162" width="128" height="149"/>
+    </elements>
+</model>
