@@ -180,11 +180,15 @@ struct BreathingSettingsView: View {
                     }
                 }
                 
+                // Section Sécurité
+                SecuritySettingsSection()
+                
                 // Section Statistiques et données
                 Section("Données et statistiques") {
                     NavigationLink("Voir les statistiques détaillées") {
-                        BreathingStatsView()
-                            .environmentObject(viewModel)
+                        Text("Statistiques de respiration")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
                     
                     VStack(alignment: .leading, spacing: 8) {
@@ -259,4 +263,70 @@ struct BreathingSettingsView: View {
     return BreathingSettingsView()
         .environmentObject(breathingViewModel)
         .environmentObject(audioManager)
+}
+
+struct SecuritySettingsSection: View {
+    @StateObject private var authManager = BiometricAuthManager.shared
+    
+    var body: some View {
+        Section("Sécurité et confidentialité") {
+            if authManager.isBiometricAvailable {
+                VStack(alignment: .leading, spacing: 12) {
+                    Toggle(isOn: Binding(
+                        get: { authManager.isAppLocked },
+                        set: { authManager.enableAppLock($0) }
+                    )) {
+                        HStack {
+                            Image(systemName: authManager.biometricIcon)
+                                .foregroundColor(.blue)
+                            
+                            VStack(alignment: .leading) {
+                                Text("Verrouillage par \(authManager.biometricTypeDescription)")
+                                    .font(.subheadline)
+                                
+                                Text("Protégez vos données personnelles")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    
+                    if authManager.isAppLocked {
+                        Text("L'application se verrouillera automatiquement lorsque vous la quittez et nécessitera une authentification pour la rouvrir.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            } else {
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle")
+                            .foregroundColor(.orange)
+                        
+                        Text("Authentification biométrique non disponible")
+                            .font(.subheadline)
+                    }
+                    
+                    Text("Configurez Face ID ou Touch ID dans les Réglages pour sécuriser l'application.")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.leading)
+                }
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Image(systemName: "lock.shield")
+                        .foregroundColor(.green)
+                    
+                    Text("Vos données restent privées")
+                        .font(.subheadline)
+                }
+                
+                Text("Toutes vos données sont stockées localement sur votre appareil et ne sont jamais partagées.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
 }

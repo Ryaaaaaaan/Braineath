@@ -68,6 +68,10 @@ struct NewMoodEntryView: View {
                         Spacer(minLength: 100)
                     }
                     .padding()
+                    .onTapGesture {
+                        // Ferme le clavier quand on tape en dehors des champs de saisie
+                        hideKeyboard()
+                    }
                 }
                 
                 // Boutons de navigation
@@ -311,6 +315,9 @@ struct NewMoodEntryView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                     )
+                    .onTapGesture {
+                        // Permet de garder le focus sur le TextEditor quand on tape dessus
+                    }
             }
             
             VStack(alignment: .leading, spacing: 12) {
@@ -473,6 +480,10 @@ struct NewMoodEntryView: View {
         AudioManager.shared.playHapticFeedback()
     }
     
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
     private func categoryIcon(for category: EmotionCategory) -> String {
         switch category {
         case .positive:
@@ -627,6 +638,12 @@ struct TriggersSelectionView: View {
             HStack {
                 TextField("Autre déclencheur...", text: $customTrigger)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .onSubmit {
+                        if !customTrigger.isEmpty && !selectedTriggers.contains(customTrigger) {
+                            selectedTriggers.append(customTrigger)
+                            customTrigger = ""
+                        }
+                    }
                 
                 Button("Ajouter") {
                     if !customTrigger.isEmpty && !selectedTriggers.contains(customTrigger) {

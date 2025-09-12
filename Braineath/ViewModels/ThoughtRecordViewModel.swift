@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreData
 
 class ThoughtRecordViewModel: ObservableObject {
     @Published var thoughtRecords: [ThoughtRecord] = []
@@ -134,6 +135,12 @@ class ThoughtRecordViewModel: ObservableObject {
                 
             case .personalization:
                 suggestions.append("Quels autres facteurs ont pu contribuer à cette situation ?")
+                
+            case .catastrophizing:
+                suggestions.append("Quel est le scénario le plus réaliste plutôt que le pire ?")
+                
+            case .mindReading:
+                suggestions.append("Ai-je vraiment des preuves de ce que l'autre personne pense ?")
             }
         }
         

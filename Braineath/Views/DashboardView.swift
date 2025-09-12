@@ -16,48 +16,43 @@ struct DashboardView: View {
     @State private var currentQuote: String = ""
     
     private let motivationalQuotes = [
-        "Chaque respiration est une nouvelle chance de recommencer.",
-        "Vos émotions sont des visiteurs, pas des résidents permanents.",
-        "La paix intérieure commence par une respiration consciente.",
-        "Vous êtes plus fort que vos pensées les plus difficiles.",
-        "Chaque petit pas compte dans votre parcours de bien-être.",
-        "Aujourd'hui est une opportunité de prendre soin de vous.",
-        "Votre mental mérite la même attention que votre corps.",
-        "Les tempêtes passent, votre force demeure.",
-        "Respirez profondément, vous êtes exactement là où vous devez être.",
-        "Votre bien-être mental est un investissement, pas une dépense."
+        "Chaque respiration, un nouveau départ.",
+        "Vos émotions passent, votre force reste.",
+        "La paix commence par un souffle.",
+        "Vous êtes plus fort que vos pensées.",
+        "Chaque pas compte sur votre chemin.",
+        "Prenez soin de vous aujourd'hui.",
+        "Votre mental mérite votre attention.",
+        "Les tempêtes passent, vous demeurez.",
+        "Respirez, vous êtes à votre place.",
+        "Votre bien-être est un investissement."
     ]
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                ScrollView {
-                    LazyVStack(spacing: 20) {
-                        // Espace pour header
-                        Spacer(minLength: 50)
-                        
-                        // Header avec accès rapide urgence
-                        headerSection
+                VStack(spacing: 12) {
+                    // Espace pour header
+                    Spacer(minLength: 15)
                     
+                    // Header avec accès rapide urgence
+                    headerSection
+                
                     // Citation motivante du jour
                     quoteSection
-                    
-                    // Résumé rapide humeur
-                    moodSummarySection
-                    
-                    // Statistiques respiration
-                    breathingStatsSection
-                    
-                    // Actions rapides
-                    quickActionsSection
-                    
-                    // Insights et tendances
-                    insightsSection
-                    
-                    Spacer(minLength: 100)
-                    }
-                    .padding()
+                
+                    // Résumé rapide humeur (condensé)
+                    compactMoodSection
+                
+                    // Actions rapides (condensé)
+                    compactQuickActionsSection
+                
+                    // Insights (condensé)
+                    compactInsightsSection
+                
+                    Spacer(minLength: 10)
                 }
+                .padding(.horizontal)
                 .refreshable {
                     refreshData()
                 }
@@ -86,7 +81,7 @@ struct DashboardView: View {
             HStack {
                 Spacer()
                 
-                // Bouton SOS d'urgence - design clair et reconnaissable
+                // Bouton SOS d'urgence - design clair et reconnaissable avec effet glowy
                 Button(action: { showingEmergencyView = true }) {
                     HStack(spacing: 8) {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -108,12 +103,18 @@ struct DashboardView: View {
                                     endPoint: .bottomTrailing
                                 )
                             )
-                            .shadow(color: .red.opacity(0.5), radius: 8, x: 0, y: 4)
+                            .shadow(color: .red.opacity(0.8), radius: 15, x: 0, y: 0)
+                            .shadow(color: .red.opacity(0.6), radius: 25, x: 0, y: 0)
+                            .overlay(
+                                Capsule()
+                                    .stroke(Color.red.opacity(0.7), lineWidth: 1)
+                                    .blur(radius: 2)
+                            )
                     )
                 }
             }
             .padding(.horizontal, 20)
-            .padding(.top, 50)
+            .padding(.top, 15)
             
             // Gradient de fondu vers le bas uniquement
             LinearGradient(
@@ -143,57 +144,17 @@ struct DashboardView: View {
             }
             
             Spacer()
-            
-            // Bouton SOS/Urgence
-            Button(action: { showingEmergencyView = true }) {
-                VStack(spacing: 4) {
-                    Image(systemName: "cross.case.fill")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                    
-                    Text("SOS")
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
-                .frame(width: 60, height: 60)
-                .background(
-                    Circle()
-                        .fill(LinearGradient(
-                            gradient: Gradient(colors: [.red, .pink]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ))
-                )
-                .shadow(color: .red.opacity(0.3), radius: 10, x: 0, y: 5)
-            }
         }
     }
     
     private var quoteSection: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Image(systemName: "quote.bubble")
-                    .foregroundColor(.blue)
-                Text("Citation du jour")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                Spacer()
-            }
-            
+        VStack(spacing: 8) {
             Text(currentQuote)
-                .font(.body)
+                .font(.title3)
                 .italic()
                 .multilineTextAlignment(.center)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(.secondarySystemBackground))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.blue.opacity(0.3), lineWidth: 1)
-                        )
-                )
+                .foregroundColor(.primary)
+                .padding(.horizontal)
         }
     }
     
@@ -221,7 +182,9 @@ struct DashboardView: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     
-                    NavigationLink("Ajouter une entrée", destination: MoodJournalView().environmentObject(moodViewModel)) {
+                    NavigationLink {
+                        MoodJournalView().environmentObject(moodViewModel)
+                    } label: {
                         Text("Première entrée")
                             .font(.caption)
                             .padding(.horizontal, 16)
@@ -263,14 +226,14 @@ struct DashboardView: View {
             }
             
             HStack(spacing: 20) {
-                StatCard(
+                CompactStatCard(
                     title: "Cette semaine",
                     value: "\(breathingViewModel.totalMinutesThisWeek) min",
                     icon: "clock.fill",
                     color: .green
                 )
                 
-                StatCard(
+                CompactStatCard(
                     title: "Série actuelle",
                     value: "\(breathingViewModel.streakDays) jours",
                     icon: "flame.fill",
@@ -281,17 +244,14 @@ struct DashboardView: View {
     }
     
     private var quickActionsSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             HStack {
                 Text("Actions rapides")
                     .font(.headline)
                 Spacer()
             }
             
-            LazyVGrid(columns: [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ], spacing: 16) {
+            VStack(spacing: 8) {
                 QuickActionCard(
                     title: "Respiration 2min",
                     subtitle: "Calme rapide",
@@ -312,7 +272,7 @@ struct DashboardView: View {
                 
                 QuickActionCard(
                     title: "Gratitude",
-                    subtitle: "3 mercis d'aujourd'hui",
+                    subtitle: "Mercis d'aujourd'hui",
                     icon: "hands.sparkles.fill",
                     color: .purple
                 ) {
@@ -321,7 +281,7 @@ struct DashboardView: View {
                 
                 QuickActionCard(
                     title: "Pensée rationnelle",
-                    subtitle: "Restructurer une pensée",
+                    subtitle: "Restructurer",
                     icon: "brain.head.profile.fill",
                     color: .blue
                 ) {
@@ -331,8 +291,67 @@ struct DashboardView: View {
         }
     }
     
+    private var compactMoodSection: some View {
+        HStack(spacing: 16) {
+            Image(systemName: "heart.fill")
+                .foregroundColor(.pink)
+                .font(.title3)
+            
+            if moodViewModel.recentMoodEntries.isEmpty {
+                Text("Ajouter une humeur")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(moodViewModel.recentMoodEntries.prefix(3), id: \.id) { entry in
+                            MoodEntryCard(entry: entry)
+                        }
+                    }
+                    .padding(.horizontal, 4)
+                }
+            }
+        }
+    }
+    
+    private var compactQuickActionsSection: some View {
+        HStack(spacing: 8) {
+            QuickActionCompact(icon: "lungs.fill", color: .green) {
+                showingQuickBreathing = true
+            }
+            QuickActionCompact(icon: "heart.fill", color: .pink) {
+                // Navigation vers mood journal
+            }
+            QuickActionCompact(icon: "hands.sparkles.fill", color: .purple) {
+                // Navigation vers gratitude
+            }
+            QuickActionCompact(icon: "brain.head.profile.fill", color: .blue) {
+                // Navigation vers thought record
+            }
+        }
+    }
+    
+    private var compactInsightsSection: some View {
+        Group {
+            if !moodViewModel.getEmotionalInsights().isEmpty {
+                HStack(spacing: 8) {
+                    Image(systemName: "lightbulb.fill")
+                        .foregroundColor(.yellow)
+                        .font(.caption)
+                    
+                    Text(moodViewModel.getEmotionalInsights().first ?? "")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                    
+                    Spacer()
+                }
+            }
+        }
+    }
+    
     private var insightsSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             HStack {
                 Image(systemName: "lightbulb.fill")
                     .foregroundColor(.yellow)
@@ -341,23 +360,23 @@ struct DashboardView: View {
                 Spacer()
             }
             
-            let insights = moodViewModel.getEmotionalInsights()
+            let insights = moodViewModel.getEmotionalInsights().prefix(2)
             
-            ForEach(insights.indices, id: \.self) { index in
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: "arrow.right.circle.fill")
-                        .foregroundColor(.blue)
-                        .font(.caption)
-                    
-                    Text(insights[index])
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
+            VStack(alignment: .leading, spacing: 8) {
+                ForEach(Array(insights.enumerated()), id: \.0) { index, insight in
+                    HStack(alignment: .top, spacing: 8) {
+                        Text("•")
+                            .foregroundColor(.blue)
+                            .font(.caption)
+                        
+                        Text(insight)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .lineLimit(2)
+                        
+                        Spacer()
+                    }
                 }
-                .padding()
-                .background(Color(.tertiarySystemBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
             }
         }
     }
@@ -394,56 +413,20 @@ struct MoodEntryCard: View {
     let entry: MoodEntry
     
     var body: some View {
-        VStack(spacing: 8) {
-            Text(entry.primaryEmotion ?? "Inconnu")
-                .font(.caption)
+        VStack(spacing: 6) {
+            Text(entry.primaryEmotion ?? "?")
+                .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
             
             Text("\(entry.emotionIntensity)/10")
-                .font(.caption2)
-                .foregroundColor(.secondary)
-            
-            if let date = entry.date {
-                Text(date, style: .date)
-                    .font(.caption2)
-                    .foregroundColor(.tertiary)
-            }
-        }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
-        .background(Color(.tertiarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-    }
-}
-
-struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(color)
-            
-            Text(value)
-                .font(.title3)
-                .fontWeight(.bold)
-                .foregroundColor(.primary)
-            
-            Text(title)
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color(.tertiarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .padding(.horizontal, 12)
     }
 }
+
 
 struct QuickActionCard: View {
     let title: String
@@ -454,12 +437,12 @@ struct QuickActionCard: View {
     
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 12) {
+            HStack(spacing: 12) {
                 Image(systemName: icon)
-                    .font(.title)
+                    .font(.title2)
                     .foregroundColor(color)
                 
-                VStack(spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .font(.subheadline)
                         .fontWeight(.semibold)
@@ -469,11 +452,34 @@ struct QuickActionCard: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color(.tertiarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .padding(.vertical, 12)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct QuickActionCompact: View {
+    let icon: String
+    let color: Color
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.title3)
+                .foregroundColor(color)
+                .frame(width: 44, height: 44)
+                .background(
+                    Circle()
+                        .fill(color.opacity(0.1))
+                )
         }
         .buttonStyle(PlainButtonStyle())
     }

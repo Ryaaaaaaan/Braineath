@@ -270,6 +270,18 @@ struct DistortionDetailCard: View {
                 "Je suis responsable de son échec",
                 "Ils parlent sûrement de moi"
             ]
+        case .catastrophizing:
+            return [
+                "Tout va s'effondrer",
+                "Le pire va arriver",
+                "Cette erreur va ruiner ma carrière"
+            ]
+        case .mindReading:
+            return [
+                "Il pense que je suis incompétent",
+                "Elle me trouve ennuyeux",
+                "Ils me jugent tous"
+            ]
         }
     }
     
@@ -335,6 +347,18 @@ struct DistortionDetailCard: View {
                 "Ai-je vraiment ce pouvoir ?",
                 "Qu'est-ce qui ne dépend pas de moi ?"
             ]
+        case .catastrophizing:
+            return [
+                "Quel est le scénario le plus réaliste ?",
+                "Que ferais-je si cela arrivait ?",
+                "À quel point c'est probable ?"
+            ]
+        case .mindReading:
+            return [
+                "Quelles preuves ai-je ?",
+                "Quelles autres explications ?",
+                "Comment puis-je vérifier ?"
+            ]
         }
     }
     
@@ -360,6 +384,10 @@ struct DistortionDetailCard: View {
             return "Je suis une personne complexe avec des forces et des faiblesses. Une action ne me définit pas."
         case .personalization:
             return "Beaucoup de facteurs influencent les situations. Je ne suis responsable que de mes actions."
+        case .catastrophizing:
+            return "Les probabilités sont généralement plus favorables que mes peurs. Je peux gérer les difficultés."
+        case .mindReading:
+            return "Je ne peux pas deviner les pensées des autres. La communication directe est plus fiable."
         }
     }
 }

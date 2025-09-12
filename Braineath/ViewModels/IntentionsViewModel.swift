@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreData
 
 class IntentionsViewModel: ObservableObject {
     @Published var newIntentionText: String = ""

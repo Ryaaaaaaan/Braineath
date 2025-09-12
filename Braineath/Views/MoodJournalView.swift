@@ -106,7 +106,7 @@ struct MoodJournalView: View {
                     
                     Text("Ajoutez quelques entrées pour voir vos tendances")
                         .font(.caption)
-                        .foregroundColor(.tertiary)
+                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
                 .frame(height: 150)
@@ -149,25 +149,25 @@ struct MoodJournalView: View {
                     GridItem(.flexible()),
                     GridItem(.flexible())
                 ], spacing: 16) {
-                    SummaryCard(
+                    StatCard(
                         title: "Humeur moyenne",
                         value: String(format: "%.1f/10", averageIntensity(from: recentWeek)),
-                        icon: "heart.fill",
-                        color: colorForAverage(averageIntensity(from: recentWeek))
+                        color: colorForAverage(averageIntensity(from: recentWeek)),
+                        icon: "heart.fill"
                     )
                     
-                    SummaryCard(
+                    StatCard(
                         title: "Énergie moyenne",
                         value: String(format: "%.1f/10", averageEnergy(from: recentWeek)),
-                        icon: "bolt.fill",
-                        color: .orange
+                        color: .orange,
+                        icon: "bolt.fill"
                     )
                     
-                    SummaryCard(
+                    StatCard(
                         title: "Stress moyen",
                         value: String(format: "%.1f/10", averageStress(from: recentWeek)),
-                        icon: "exclamationmark.triangle.fill",
-                        color: colorForStress(averageStress(from: recentWeek))
+                        color: colorForStress(averageStress(from: recentWeek)),
+                        icon: "exclamationmark.triangle.fill"
                     )
                 }
             }
@@ -340,34 +340,6 @@ struct SimpleMoodChart: View {
     }
 }
 
-struct SummaryCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.title2)
-                .foregroundColor(color)
-            
-            Text(value)
-                .font(.title3)
-                .fontWeight(.bold)
-                .foregroundColor(.primary)
-            
-            Text(title)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color(.tertiarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-    }
-}
 
 struct EmotionSuggestionCard: View {
     let emotion: Emotion
@@ -436,7 +408,7 @@ struct MoodEntryRow: View {
                 if let notes = entry.notes, !notes.isEmpty {
                     Text(notes)
                         .font(.caption)
-                        .foregroundColor(.tertiary)
+                        .foregroundColor(.secondary)
                         .lineLimit(2)
                 }
             }

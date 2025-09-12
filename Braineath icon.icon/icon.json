@@ -1,0 +1,52 @@
+{
+  "fill" : "automatic",
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode" : "overlay",
+          "fill" : {
+            "solid" : "display-p3:0.00000,0.30277,0.03819,1.00000"
+          },
+          "image-name" : "hands-holding-svgrepo-com.svg",
+          "name" : "hands-holding-svgrepo-com",
+          "opacity" : 1,
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -1.7487764079281027,
+              177.46511609025515
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "solid" : "display-p3:0.70047,0.01631,0.00000,1.00000"
+          },
+          "glass" : true,
+          "image-name" : "heart-svgrepo-com.svg",
+          "name" : "heart-svgrepo-com",
+          "opacity" : 0.81,
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -1.8328474717829177,
+              -96.86946855865003
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}

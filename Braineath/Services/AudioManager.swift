@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 import Combine
+import UIKit
 
 class AudioManager: NSObject, ObservableObject {
     static let shared = AudioManager()
@@ -161,21 +162,81 @@ class AudioManager: NSObject, ObservableObject {
         audioPlayer?.volume = volume
     }
     
-    // Sons pour les transitions de respiration
+    // Sons pour les transitions de respiration - versions dreamy et douces
     func playInhaleChime() {
-        playSystemSound(1103) // Son système léger
+        playDreamyTone(frequency: 523.25, duration: 0.8, volume: 0.3) // Do5 - son d'inspiration
     }
     
     func playExhaleChime() {
-        playSystemSound(1104) // Son système doux
+        playDreamyTone(frequency: 392.00, duration: 1.2, volume: 0.25) // Sol4 - son d'expiration plus bas
     }
     
     func playHoldChime() {
-        playSystemSound(1105) // Son système neutre
+        playDreamyTone(frequency: 440.00, duration: 0.5, volume: 0.2) // La4 - son de pause doux
     }
     
     private func playSystemSound(_ soundID: SystemSoundID) {
         AudioServicesPlaySystemSound(soundID)
+    }
+    
+    private func playDreamyTone(frequency: Float, duration: Float, volume: Float) {
+        let sampleRate: Float = 44100
+        let frameCount = UInt32(sampleRate * duration)
+        
+        guard let audioFormat = AVAudioFormat(standardFormatWithSampleRate: Double(sampleRate), channels: 1) else {
+            return
+        }
+        
+        guard let audioBuffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: frameCount) else {
+            return
+        }
+        
+        audioBuffer.frameLength = frameCount
+        
+        let channels = UnsafeBufferPointer(start: audioBuffer.floatChannelData, count: Int(audioBuffer.format.channelCount))
+        
+        for frame in 0..<Int(frameCount) {
+            let sampleTime = Float(frame) / sampleRate
+            let fadeTime: Float = 0.1 // Fade in/out de 0.1 seconde
+            
+            // Envelope pour un son doux avec fade in/out
+            var envelope: Float = 1.0
+            if sampleTime < fadeTime {
+                envelope = sampleTime / fadeTime
+            } else if sampleTime > duration - fadeTime {
+                envelope = (duration - sampleTime) / fadeTime
+            }
+            
+            // Génération d'un ton complexe plus doux et dreamy
+            let fundamental = sin(2.0 * .pi * frequency * sampleTime)
+            let harmonic1 = sin(2.0 * .pi * frequency * 2.0 * sampleTime) * 0.3
+            let harmonic2 = sin(2.0 * .pi * frequency * 3.0 * sampleTime) * 0.1
+            let harmonic3 = sin(2.0 * .pi * frequency * 0.5 * sampleTime) * 0.2 // Sous-harmonique
+            
+            let sample = (fundamental + harmonic1 + harmonic2 + harmonic3) * volume * envelope * 0.5
+            
+            channels[0][frame] = sample
+        }
+        
+        // Jouer le son
+        let audioEngine = AVAudioEngine()
+        let playerNode = AVAudioPlayerNode()
+        
+        audioEngine.attach(playerNode)
+        audioEngine.connect(playerNode, to: audioEngine.mainMixerNode, format: audioFormat)
+        
+        do {
+            try audioEngine.start()
+            playerNode.scheduleBuffer(audioBuffer, at: nil, options: [], completionHandler: nil)
+            playerNode.play()
+            
+            // Arrêter le moteur après la durée du son
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(duration + 0.1)) {
+                audioEngine.stop()
+            }
+        } catch {
+            print("Failed to play dreamy tone: \(error)")
+        }
     }
     
     // Génération de vibrations haptiques

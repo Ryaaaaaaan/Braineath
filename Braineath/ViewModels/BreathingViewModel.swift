@@ -44,6 +44,8 @@ class BreathingViewModel: ObservableObject {
     @Published var recentSessions: [BreathingSession] = []
     @Published var totalMinutesThisWeek: Int = 0
     @Published var streakDays: Int = 0
+    @Published var totalSessions: Int = 0
+    @Published var totalMinutes: Int = 0
     
     enum BreathingPhase: String, CaseIterable {
         case ready = "Prêt"
@@ -303,11 +305,11 @@ class BreathingViewModel: ObservableObject {
         }
     }
     
-    private func loadRecentSessions() {
+    func loadRecentSessions() {
         recentSessions = dataManager.fetchBreathingSessions(limit: 14)
     }
     
-    private func calculateStats() {
+    func calculateStats() {
         // Calculer les minutes totales cette semaine
         let weekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         let thisWeekSessions = recentSessions.filter { session in
@@ -316,6 +318,14 @@ class BreathingViewModel: ObservableObject {
         }
         
         totalMinutesThisWeek = thisWeekSessions.reduce(0) { total, session in
+            return total + Int(session.duration) / 60
+        }
+        
+        // Calculer le nombre total de sessions
+        totalSessions = recentSessions.count
+        
+        // Calculer le total de minutes (toutes sessions)
+        totalMinutes = recentSessions.reduce(0) { total, session in
             return total + Int(session.duration) / 60
         }
         

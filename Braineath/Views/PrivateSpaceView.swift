@@ -55,6 +55,9 @@ struct PrivateSpaceView: View {
                         Spacer(minLength: 100)
                     }
                     .padding()
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
                 }
             }
             .navigationTitle("Espaces privés")
@@ -196,6 +199,9 @@ struct PrivateSpaceView: View {
                 TextField("Pour quoi êtes-vous reconnaissant(e) ?", text: $gratitudeViewModel.newGratitudeText, axis: .vertical)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .lineLimit(3...6)
+                    .onSubmit {
+                        gratitudeViewModel.addGratitudeEntry()
+                    }
                 
                 HStack {
                     // Catégories rapides
@@ -346,6 +352,9 @@ struct PrivateSpaceView: View {
                 TextField("Quelle est votre intention pour aujourd'hui ?", text: $intentionsViewModel.newIntentionText, axis: .vertical)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .lineLimit(2...4)
+                    .onSubmit {
+                        intentionsViewModel.createIntention()
+                    }
                 
                 HStack {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -434,6 +443,9 @@ struct PrivateSpaceView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
+                .onTapGesture {
+                    // Permet de garder le focus sur le TextEditor quand on tape dessus
+                }
             
             HStack {
                 Text("\(intentionsViewModel.freeWritingText.count) caractères")
@@ -466,6 +478,10 @@ struct PrivateSpaceView: View {
                 }
             }
         }
+    }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 

@@ -146,7 +146,8 @@ struct PersistenceController {
             storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         }
         
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        let persistentContainer = container
+        persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 /*
                  En production, vous devriez implémenter une gestion d'erreur appropriée.
@@ -166,7 +167,8 @@ struct PersistenceController {
                     if let storeURL = storeDescription.url {
                         try? FileManager.default.removeItem(at: storeURL)
                         // Relancer le chargement du store
-                        container.loadPersistentStores { _, newError in
+                        let localContainer = persistentContainer
+                        localContainer.loadPersistentStores { _, newError in
                             if let newError = newError {
                                 fatalError("Failed to recreate persistent store: \(newError)")
                             }

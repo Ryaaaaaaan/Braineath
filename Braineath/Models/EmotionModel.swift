@@ -129,6 +129,8 @@ enum CognitiveDistortion: String, CaseIterable, Codable {
     case shouldStatements = "Tyrannies des 'il faut'"
     case labeling = "Étiquetage"
     case personalization = "Personnalisation"
+    case catastrophizing = "Catastrophisme"
+    case mindReading = "Lecture de pensée"
     
     var description: String {
         switch self {
@@ -152,6 +154,10 @@ enum CognitiveDistortion: String, CaseIterable, Codable {
             return "S'attacher des étiquettes négatives"
         case .personalization:
             return "Se blâmer pour des événements hors de contrôle"
+        case .catastrophizing:
+            return "Imaginer le pire scénario possible"
+        case .mindReading:
+            return "Supposer connaître les pensées des autres"
         }
     }
 }

@@ -169,7 +169,7 @@ struct ThoughtRecordView: View {
                     
                     Text("La restructuration cognitive est un outil puissant pour transformer les pensées négatives.")
                         .font(.caption)
-                        .foregroundColor(.tertiary)
+                        .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                     
                     Button("Créer un enregistrement") {
@@ -290,7 +290,7 @@ struct ThoughtRecordRow: View {
                     if let date = record.date {
                         Text(date, style: .relative)
                             .font(.caption2)
-                            .foregroundColor(.tertiary)
+                            .foregroundColor(.secondary)
                     }
                 }
                 

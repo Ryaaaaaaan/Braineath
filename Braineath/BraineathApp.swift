@@ -27,7 +27,7 @@ struct BraineathApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            ContentView()
                 .environment(\.managedObjectContext, dataManager.context)
                 .environmentObject(notificationManager)
                 .environmentObject(audioManager)
