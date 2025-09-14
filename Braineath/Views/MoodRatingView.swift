@@ -138,18 +138,30 @@ struct MoodRatingView: View {
     private func handleConfirm() {
         if isForBefore {
             viewModel.moodBefore = selectedMood
-            // Si c'est avant, fermer et continuer la session
+            // Si c'est avant, fermer et démarrer la session
             dismiss()
+            // Démarrer la session maintenant que l'humeur est enregistrée
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                viewModel.actuallyStartBreathingSession()
+            }
         } else {
             viewModel.moodAfter = selectedMood
             dismiss()
         }
-        
+
         AudioManager.shared.playHapticFeedback(style: .medium)
     }
     
     private func handleSkip() {
-        dismiss()
+        if isForBefore {
+            // Si c'est avant, démarrer quand même la session
+            dismiss()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                viewModel.actuallyStartBreathingSession()
+            }
+        } else {
+            dismiss()
+        }
     }
     
     private func colorForMood(_ mood: Int) -> Color {

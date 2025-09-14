@@ -48,7 +48,7 @@ struct MainTabViewWithNewDashboard: View {
             // Mood Journal
             NavigationView {
                 MoodJournalView()
-                    .navigationTitle("Journal")
+                    .navigationTitle("Journal d'humeur")
                     .navigationBarTitleDisplayMode(.large)
             }
             .tabItem {

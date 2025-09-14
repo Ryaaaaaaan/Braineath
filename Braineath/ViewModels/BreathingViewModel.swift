@@ -66,32 +66,35 @@ class BreathingViewModel: ObservableObject {
         updatePhaseText()
     }
     
+    // Point d'entrée pour démarrer une session - affiche d'abord la popup d'humeur
     func startBreathingSession() {
         guard breathingState == .idle else { return }
-        
+
+        // Important : on demande l'humeur AVANT de commencer pour avoir une base de comparaison
+        showingMoodRating = true
+    }
+
+    // Démarre réellement la session après l'évaluation d'humeur
+    func actuallyStartBreathingSession() {
         breathingState = .running
         startTime = Date()
         currentCycle = 0
         sessionProgress = 0.0
-        
-        // Calculer le nombre total de cycles
+
+        // Calcul du nombre de cycles basé sur la durée sélectionnée et le pattern choisi
         let totalDuration = Double(sessionDuration * 60)
         let cycleDuration = selectedPattern.inhaleTime + selectedPattern.holdTime + selectedPattern.exhaleTime + selectedPattern.pauseTime
         totalCycles = Int(totalDuration / cycleDuration)
-        
+
         timeRemaining = totalDuration
-        
+
+        // Démarrage du son d'ambiance si activé
         if soundEnabled {
             audioManager.playBreathingSound(selectedSound)
         }
-        
+
         startBreathingCycle()
         startSessionTimer()
-        
-        // Demander l'évaluation de l'humeur avant
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.showingMoodRating = true
-        }
     }
     
     private func startBreathingCycle() {
@@ -333,17 +336,21 @@ class BreathingViewModel: ObservableObject {
         streakDays = calculateStreakDays()
     }
     
+    // Calcule le nombre de jours consécutifs avec au moins une session
+    // Utile pour gamifier l'expérience et encourager la régularité
     private func calculateStreakDays() -> Int {
         let calendar = Calendar.current
         var streak = 0
         var currentDate = calendar.startOfDay(for: Date())
-        
-        for _ in 0..<30 { // Regarder les 30 derniers jours maximum
+
+        // On regarde jusqu'à 30 jours en arrière pour calculer la série
+        for _ in 0..<30 {
             let daysSessions = recentSessions.filter { session in
                 guard let sessionDate = session.date else { return false }
                 return calendar.isDate(sessionDate, inSameDayAs: currentDate)
             }
-            
+
+            // Dès qu'on trouve un jour sans session, on arrête le décompte
             if daysSessions.isEmpty {
                 break
             } else {
@@ -351,7 +358,7 @@ class BreathingViewModel: ObservableObject {
                 currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate) ?? currentDate
             }
         }
-        
+
         return streak
     }
     

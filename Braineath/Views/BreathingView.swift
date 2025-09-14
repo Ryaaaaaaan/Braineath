@@ -12,42 +12,39 @@ struct BreathingView: View {
     @State private var showingSettings = false
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                ZStack {
-                    // Gradient de fond adaptatif
-                    backgroundGradient
-                    
-                    ScrollView {
-                        VStack(spacing: 24) {
-                            if viewModel.breathingState == .idle {
-                                idleStateView
-                            } else {
-                                activeSessionView(geometry: geometry)
-                            }
+        GeometryReader { geometry in
+            ZStack {
+                // Gradient de fond adaptatif
+                backgroundGradient
+
+                ScrollView {
+                    VStack(spacing: 24) {
+                        if viewModel.breathingState == .idle {
+                            idleStateView
+                        } else {
+                            activeSessionView(geometry: geometry)
                         }
-                        .padding()
                     }
+                    .padding()
+                }
+                .scrollBounceBehavior(.basedOnSize)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { showingSettings = true }) {
+                    Image(systemName: "gearshape.fill")
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle("Respiration")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingSettings = true }) {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-            .sheet(isPresented: $showingSettings) {
-                BreathingSettingsView()
-                    .environmentObject(viewModel)
-            }
-            .sheet(isPresented: $viewModel.showingMoodRating) {
-                MoodRatingView()
-                    .environmentObject(viewModel)
-            }
+        }
+        .sheet(isPresented: $showingSettings) {
+            BreathingSettingsView()
+                .environmentObject(viewModel)
+        }
+        .sheet(isPresented: $viewModel.showingMoodRating) {
+            MoodRatingView()
+                .environmentObject(viewModel)
         }
         .onAppear {
             viewModel.loadRecentSessions()
@@ -225,23 +222,52 @@ struct BreathingView: View {
     }
     
     private var sessionProgressSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             HStack {
                 Text("Cycle \(viewModel.currentCycle)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-                
+
                 Spacer()
-                
+
                 Text(viewModel.formatTime(viewModel.timeRemaining))
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
             }
-            
-            ProgressView(value: viewModel.sessionProgress)
-                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                .scaleEffect(x: 1, y: 3, anchor: .center)
+
+            // Barre de progression douce et moderne
+            ZStack(alignment: .leading) {
+                // Fond de la barre
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(.systemGray5))
+                    .frame(height: 8)
+
+                // Progression avec gradient doux
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(
+                        LinearGradient(
+                            colors: [.blue.opacity(0.8), .purple.opacity(0.6)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .frame(width: (UIScreen.main.bounds.width - 80) * viewModel.sessionProgress, height: 8)
+                    .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
+
+                // Effet de lueur
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(
+                        LinearGradient(
+                            colors: [.blue.opacity(0.3), .purple.opacity(0.2)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .frame(width: (UIScreen.main.bounds.width - 80) * viewModel.sessionProgress, height: 8)
+                    .blur(radius: 4)
+                    .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
+            }
         }
     }
     
@@ -262,9 +288,9 @@ struct BreathingView: View {
                     )
                     .frame(width: size, height: size)
                     .scaleEffect(viewModel.circleScale + CGFloat(index) * 0.1)
-                    .opacity(viewModel.circleOpacity - Double(index) * 0.2)
+                    .opacity(viewModel.circleOpacity - Double(index) * 0.15)
                     .animation(
-                        .easeInOut(duration: 1.0)
+                        .spring(response: 1.2, dampingFraction: 0.7)
                         .delay(Double(index) * 0.1),
                         value: viewModel.circleScale
                     )

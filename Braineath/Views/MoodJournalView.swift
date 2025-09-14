@@ -19,46 +19,42 @@ struct MoodJournalView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    // Sélecteur de période
-                    timeRangeSelector
-                    
-                    // Graphique des tendances
-                    moodTrendsChart
-                    
-                    // Résumé de la semaine
-                    weekSummary
-                    
-                    // Émotions suggérées
-                    if !viewModel.suggestedEmotions.isEmpty {
-                        suggestedEmotionsSection
-                    }
-                    
-                    // Liste des entrées récentes
-                    recentEntriesSection
-                    
-                    Spacer(minLength: 100)
+        ScrollView {
+            LazyVStack(spacing: 20) {
+                // Sélecteur de période
+                timeRangeSelector
+
+                // Graphique des tendances
+                moodTrendsChart
+
+                // Résumé de la semaine
+                weekSummary
+
+                // Émotions suggérées
+                if !viewModel.suggestedEmotions.isEmpty {
+                    suggestedEmotionsSection
                 }
-                .padding()
+
+                // Liste des entrées récentes
+                recentEntriesSection
+
+                Spacer(minLength: 100)
             }
-            .navigationTitle("Journal d'humeur")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbarBackground(.hidden, for: .navigationBar)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingNewEntry = true }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.blue)
-                    }
+            .padding()
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { showingNewEntry = true }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.blue)
                 }
             }
-            .sheet(isPresented: $showingNewEntry) {
-                NewMoodEntryView()
-                    .environmentObject(viewModel)
-            }
+        }
+        .sheet(isPresented: $showingNewEntry) {
+            NewMoodEntryView()
+                .environmentObject(viewModel)
         }
         .onAppear {
             viewModel.loadRecentMoods()

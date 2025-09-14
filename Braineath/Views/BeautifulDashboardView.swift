@@ -22,13 +22,15 @@ struct BeautifulDashboardView: View {
     @State private var quoteOpacity: Double = 1.0
     @State private var contentOffset: CGFloat = 0
     
+    // Sélectionne une citation basée sur le jour du mois pour une rotation lente
+    // Assure que l'utilisateur voit la même citation pendant toute la journée
     private var currentQuote: String {
         let quotes = profileManager.getPersonalizedQuotes()
         guard !quotes.isEmpty else { return "Respirez, vous êtes exactement là où vous devez être." }
-        
-        // Change quote based on current minute
-        let minute = Calendar.current.component(.minute, from: Date())
-        let index = minute % quotes.count
+
+        // Rotation basée sur le jour du mois - change une fois par jour maximum
+        let day = Calendar.current.component(.day, from: Date())
+        let index = day % quotes.count
         return quotes[index]
     }
     
@@ -47,23 +49,24 @@ struct BeautifulDashboardView: View {
                         VStack(spacing: 30) {
                             // Welcome section with greeting
                             welcomeSection
-                            
+
                             // Glowy quote section
                             quoteSection
-                            
+
                             // Quick breathing button
                             quickBreathingButton
-                            
+
                             // Compact stats if available
                             if !moodViewModel.recentMoodEntries.isEmpty {
                                 compactStatsSection
                             }
-                            
+
                             Spacer(minLength: 100)
                         }
                         .padding(.horizontal, 20)
                         .offset(y: contentOffset)
                     }
+                    .scrollBounceBehavior(.basedOnSize)
                 }
                 .onAppear {
                     setupInitialState()
@@ -271,15 +274,24 @@ struct BeautifulDashboardView: View {
         }
     }
     
+    // Lance les animations de fond pour créer une atmosphère apaisante
+    // La respiration de fond aide à induire un état de calme chez l'utilisateur
     private func startAnimations() {
-        // Breathing animation
-        withAnimation(.easeInOut(duration: 4.0).repeatForever(autoreverses: true)) {
-            breathingScale = 1.3
-            breathingOpacity = 0.6
+        // Animation de respiration lente en arrière-plan
+        withAnimation(.easeInOut(duration: 5.0).repeatForever(autoreverses: true)) {
+            breathingScale = 1.2
+            breathingOpacity = 0.5
         }
-        
-        // Quote opacity stays constant
-        quoteOpacity = 1.0
+
+        // Animation d'apparition progressive des éléments
+        withAnimation(.easeOut(duration: 1.0).delay(0.2)) {
+            contentOffset = 0
+        }
+
+        // Transition douce pour l'affichage de la citation
+        withAnimation(.easeInOut(duration: 0.8)) {
+            quoteOpacity = 1.0
+        }
     }
     
     private func averageMood() -> Double {

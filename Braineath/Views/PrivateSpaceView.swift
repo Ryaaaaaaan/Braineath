@@ -35,34 +35,30 @@ struct PrivateSpaceView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                // Sélecteur d'onglets personnalisé
-                customTabSelector
-                
-                // Contenu selon l'onglet sélectionné
-                ScrollView {
-                    VStack(spacing: 24) {
-                        switch selectedTab {
-                        case .gratitude:
-                            gratitudeContent
-                        case .intentions:
-                            intentionsContent
-                        case .reflections:
-                            reflectionsContent
-                        }
-                        
-                        Spacer(minLength: 100)
+        VStack(spacing: 0) {
+            // Sélecteur d'onglets personnalisé
+            customTabSelector
+
+            // Contenu selon l'onglet sélectionné
+            ScrollView {
+                VStack(spacing: 24) {
+                    switch selectedTab {
+                    case .gratitude:
+                        gratitudeContent
+                    case .intentions:
+                        intentionsContent
+                    case .reflections:
+                        reflectionsContent
                     }
-                    .padding()
-                    .onTapGesture {
-                        hideKeyboard()
-                    }
+
+                    Spacer(minLength: 100)
+                }
+                .padding()
+                .onTapGesture {
+                    hideKeyboard()
                 }
             }
-            .navigationTitle("Espaces privés")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .scrollBounceBehavior(.basedOnSize)
         }
     }
     
@@ -70,9 +66,10 @@ struct PrivateSpaceView: View {
         HStack(spacing: 0) {
             ForEach(PrivateTab.allCases, id: \.self) { tab in
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.3)) {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                         selectedTab = tab
                     }
+                    AudioManager.shared.playHapticFeedback(style: .light)
                 }) {
                     VStack(spacing: 8) {
                         Image(systemName: tab.icon)
@@ -101,21 +98,26 @@ struct PrivateSpaceView: View {
     
     private var gratitudeContent: some View {
         VStack(spacing: 24) {
-            // En-tête gratitude
-            VStack(spacing: 16) {
-                Image(systemName: "heart.circle.fill")
-                    .font(.system(size: 50))
-                    .foregroundColor(.pink)
-                
-                Text("Journal de gratitude")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                
-                Text("Trois choses pour lesquelles vous êtes reconnaissant(e) aujourd'hui")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
+            // En-tête gratitude compact
+            VStack(spacing: 8) {
+                HStack {
+                    Image(systemName: "heart.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.pink)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Journal de gratitude")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+
+                        Text("Trois choses pour lesquelles vous êtes reconnaissant(e)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+                }
             }
             
             // Ajout rapide de gratitude
@@ -131,21 +133,26 @@ struct PrivateSpaceView: View {
     
     private var intentionsContent: some View {
         VStack(spacing: 24) {
-            // En-tête intentions
-            VStack(spacing: 16) {
-                Image(systemName: "target")
-                    .font(.system(size: 50))
-                    .foregroundColor(.blue)
-                
-                Text("Intentions quotidiennes")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                
-                Text("Définissez vos intentions pour cultiver une vie consciente")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
+            // En-tête intentions compact
+            VStack(spacing: 8) {
+                HStack {
+                    Image(systemName: "target")
+                        .font(.title)
+                        .foregroundColor(.blue)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Intentions quotidiennes")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+
+                        Text("Cultivez une vie consciente")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+                }
             }
             
             // Intention du jour
@@ -161,21 +168,26 @@ struct PrivateSpaceView: View {
     
     private var reflectionsContent: some View {
         VStack(spacing: 24) {
-            // En-tête réflexions
-            VStack(spacing: 16) {
-                Image(systemName: "book.circle.fill")
-                    .font(.system(size: 50))
-                    .foregroundColor(.purple)
-                
-                Text("Réflexions libres")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                
-                Text("Un espace pour vos pensées, découvertes et insights personnels")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
+            // En-tête réflexions compact
+            VStack(spacing: 8) {
+                HStack {
+                    Image(systemName: "book.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.purple)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Réflexions libres")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+
+                        Text("Vos pensées et insights personnels")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    Spacer()
+                }
             }
             
             // Écriture libre
