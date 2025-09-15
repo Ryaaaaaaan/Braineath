@@ -9,39 +9,29 @@ import SwiftUI
 
 struct BreathingView: View {
     @EnvironmentObject var viewModel: BreathingViewModel
-    @State private var showingSettings = false
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Gradient de fond adaptatif
+                // Gradient de fond adaptatif avec blur
                 backgroundGradient
 
-                ScrollView {
-                    VStack(spacing: 24) {
-                        if viewModel.breathingState == .idle {
-                            idleStateView
-                        } else {
-                            activeSessionView(geometry: geometry)
-                        }
+                // Responsive layout that adapts to screen size
+                VStack(spacing: 0) {
+                    if viewModel.breathingState == .idle {
+                        idleStateView(geometry: geometry)
+                            .transition(.opacity.combined(with: .scale))
+                    } else {
+                        activeSessionView(geometry: geometry)
+                            .transition(.opacity.combined(with: .scale))
                     }
-                    .padding()
                 }
-                .scrollBounceBehavior(.basedOnSize)
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .animation(.easeInOut(duration: 0.4), value: viewModel.breathingState)
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showingSettings = true }) {
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(.secondary)
-                }
-            }
-        }
-        .sheet(isPresented: $showingSettings) {
-            BreathingSettingsView()
-                .environmentObject(viewModel)
-        }
+        .toolbar(viewModel.breathingState != .idle ? .hidden : .visible, for: .tabBar)
         .sheet(isPresented: $viewModel.showingMoodRating) {
             MoodRatingView()
                 .environmentObject(viewModel)
@@ -56,6 +46,12 @@ struct BreathingView: View {
             gradient: Gradient(colors: gradientColors),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
+        )
+        .overlay(
+            // Blur overlay for consistency with other views
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .opacity(0.2)
         )
         .ignoresSafeArea()
         .animation(.easeInOut(duration: 2.0), value: viewModel.currentPhase)
@@ -74,67 +70,76 @@ struct BreathingView: View {
         }
     }
     
-    private var idleStateView: some View {
-        VStack(spacing: 32) {
-            // Statistiques rapides
-            statsSection
+    private func idleStateView(geometry: GeometryProxy) -> some View {
+        let screenHeight = geometry.size.height
+        let compactSpacing = screenHeight < 700 ? 12.0 : 20.0
+        
+        return VStack(spacing: compactSpacing) {
+            // Statistiques rapides - plus compactes
+            compactStatsSection
             
-            // Sélection du pattern
+            // Sélection du pattern - plus compact
             patternSelectionSection
             
-            // Sélection de la durée
-            durationSelectionSection
+            // Sélection de la durée - inline
+            inlineDurationSelection
             
             // Bouton de démarrage principal
             startButton
             
-            // Sessions récentes
-            recentSessionsSection
+            Spacer(minLength: 8)
         }
     }
     
     private func activeSessionView(geometry: GeometryProxy) -> some View {
-        VStack(spacing: 32) {
-            // Progression de la session
-            sessionProgressSection
+        let screenHeight = geometry.size.height
+        let compactMode = screenHeight < 700
+        let spacing = compactMode ? 16.0 : 32.0
+        
+        return VStack(spacing: 0) {
+            // Add spacer at top to center content
+            Spacer(minLength: compactMode ? 20 : 40)
             
-            // Animation de respiration centrale
-            breathingAnimationView(geometry: geometry)
+            // Animation de respiration centrale avec countdown circulaire intégré
+            breathingAnimationViewWithCircularProgress(geometry: geometry)
+                .padding(.bottom, compactMode ? 16 : 24)
             
-            // Instructions et phase actuelle
-            instructionsSection
+            // Instructions et phase actuelle - plus compacte si nécessaire
+            instructionsSection(compact: compactMode)
+                .padding(.bottom, compactMode ? 12 : 16)
             
-            // Contrôles de session
-            sessionControlsSection
+            // Contrôles de session - adaptés
+            sessionControlsSection(compact: compactMode)
+            
+            // Balance with bottom spacer
+            Spacer(minLength: compactMode ? 20 : 40)
         }
     }
     
-    private var statsSection: some View {
-        HStack(spacing: 20) {
+    private var compactStatsSection: some View {
+        HStack(spacing: 12) {
             StatCard(
-                title: "Streak",
+                title: "Série",
                 value: "\(viewModel.streakDays)",
-                subtitle: "jours",
                 color: .orange,
                 icon: "flame.fill"
             )
             
             StatCard(
-                title: "Cette semaine",
-                value: "\(viewModel.totalMinutesThisWeek)",
-                subtitle: "minutes",
-                color: .green,
-                icon: "clock.fill"
-            )
-            
-            StatCard(
-                title: "Total sessions",
+                title: "Sessions",
                 value: "\(viewModel.recentSessions.count)",
-                subtitle: "complétées",
                 color: .blue,
                 icon: "lungs.fill"
             )
+            
+            StatCard(
+                title: "Minutes",
+                value: "\(viewModel.totalMinutesThisWeek)",
+                color: .green,
+                icon: "clock.fill"
+            )
         }
+        .padding(.horizontal, 4)
     }
     
     private var patternSelectionSection: some View {
@@ -143,55 +148,62 @@ struct BreathingView: View {
                 .font(.headline)
                 .foregroundColor(.primary)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(BreathingPattern.allCases, id: \.self) { pattern in
-                        BreathingPatternCard(
-                            pattern: pattern,
-                            isSelected: viewModel.selectedPattern == pattern
-                        ) {
-                            viewModel.selectedPattern = pattern
-                            AudioManager.shared.playHapticFeedback()
-                        }
+            // Compact pattern buttons grid
+            LazyVGrid(columns: [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ], spacing: 8) {
+                ForEach(BreathingPattern.allCases, id: \.self) { pattern in
+                    CompactPatternButton(
+                        pattern: pattern,
+                        isSelected: viewModel.selectedPattern == pattern
+                    ) {
+                        viewModel.selectedPattern = pattern
+                        AudioManager.shared.playHapticFeedback()
                     }
                 }
-                .padding(.horizontal)
             }
         }
     }
     
-    private var durationSelectionSection: some View {
-        VStack(spacing: 16) {
+    private var inlineDurationSelection: some View {
+        VStack(spacing: 12) {
             HStack {
-                Text("Durée de session")
-                    .font(.headline)
+                Text("Durée")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
                     .foregroundColor(.primary)
                 
                 Spacer()
                 
                 Text("\(viewModel.sessionDuration) min")
-                    .font(.title3)
+                    .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.blue)
             }
             
-            HStack(spacing: 12) {
-                ForEach([1, 3, 5, 10, 15, 20], id: \.self) { duration in
+            HStack(spacing: 6) {
+                ForEach([1, 3, 5, 10, 15], id: \.self) { duration in
                     Button("\(duration)m") {
-                        viewModel.sessionDuration = duration
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            viewModel.sessionDuration = duration
+                        }
                         AudioManager.shared.playHapticFeedback()
                     }
-                    .font(.subheadline)
+                    .font(.caption)
                     .fontWeight(.medium)
                     .foregroundColor(viewModel.sessionDuration == duration ? .white : .primary)
-                    .frame(width: 50, height: 36)
+                    .frame(width: 40, height: 28)
                     .background(
-                        RoundedRectangle(cornerRadius: 18)
+                        RoundedRectangle(cornerRadius: 14)
                             .fill(viewModel.sessionDuration == duration ? Color.blue : Color(.tertiarySystemBackground))
                     )
+                    .scaleEffect(viewModel.sessionDuration == duration ? 1.05 : 1.0)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.7), value: viewModel.sessionDuration)
                 }
             }
         }
+        .padding(.horizontal, 8)
     }
     
     private var startButton: some View {
@@ -222,7 +234,7 @@ struct BreathingView: View {
     }
     
     private var sessionProgressSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
             HStack {
                 Text("Cycle \(viewModel.currentCycle)")
                     .font(.subheadline)
@@ -236,43 +248,139 @@ struct BreathingView: View {
                     .foregroundColor(.primary)
             }
 
-            // Barre de progression douce et moderne
-            ZStack(alignment: .leading) {
-                // Fond de la barre
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color(.systemGray5))
-                    .frame(height: 8)
+            // Barre de progression douce et moderne - responsive
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    // Fond de la barre
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(Color(.systemGray5))
+                        .frame(height: 6)
 
-                // Progression avec gradient doux
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(
-                        LinearGradient(
-                            colors: [.blue.opacity(0.8), .purple.opacity(0.6)],
-                            startPoint: .leading,
-                            endPoint: .trailing
+                    // Progression avec gradient doux
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(
+                            LinearGradient(
+                                colors: [.blue.opacity(0.8), .purple.opacity(0.6)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
                         )
-                    )
-                    .frame(width: (UIScreen.main.bounds.width - 80) * viewModel.sessionProgress, height: 8)
-                    .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
+                        .frame(width: geometry.size.width * viewModel.sessionProgress, height: 6)
+                        .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
 
-                // Effet de lueur
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(
-                        LinearGradient(
-                            colors: [.blue.opacity(0.3), .purple.opacity(0.2)],
-                            startPoint: .leading,
-                            endPoint: .trailing
+                    // Effet de lueur
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(
+                            LinearGradient(
+                                colors: [.blue.opacity(0.3), .purple.opacity(0.2)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
                         )
+                        .frame(width: geometry.size.width * viewModel.sessionProgress, height: 6)
+                        .blur(radius: 3)
+                        .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
+                }
+            }
+            .frame(height: 6)
+        }
+        .padding(.top, 8)
+    }
+    
+    private func breathingAnimationViewWithCircularProgress(geometry: GeometryProxy) -> some View {
+        let screenHeight = geometry.size.height
+        let screenWidth = geometry.size.width
+        let compactMode = screenHeight < 700
+        
+        // Adaptive sizing based on available space
+        let maxSize = compactMode ? min(screenWidth * 0.6, 200) : min(screenWidth * 0.7, 300)
+        let availableHeight = screenHeight * (compactMode ? 0.4 : 0.5)
+        let size = min(maxSize, availableHeight)
+        
+        return VStack(spacing: compactMode ? 16 : 24) {
+            // Cycle info at the top
+            HStack {
+                Text("Cycle \(viewModel.currentCycle)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text(viewModel.formatTime(viewModel.timeRemaining))
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.primary)
+            }
+            .padding(.horizontal)
+            
+            // Main breathing animation with circular progress
+            ZStack {
+                // Circular progress ring (background)
+                Circle()
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 6)
+                    .frame(width: size + 40, height: size + 40)
+                
+                // Circular progress ring (foreground)
+                Circle()
+                    .trim(from: 0, to: CGFloat(viewModel.sessionProgress))
+                    .stroke(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.blue, .purple]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        style: StrokeStyle(lineWidth: 6, lineCap: .round)
                     )
-                    .frame(width: (UIScreen.main.bounds.width - 80) * viewModel.sessionProgress, height: 8)
-                    .blur(radius: 4)
+                    .frame(width: size + 40, height: size + 40)
+                    .rotationEffect(.degrees(-90))
                     .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
+                
+                // Breathing circles animation
+                ForEach(0..<3) { index in
+                    Circle()
+                        .stroke(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.blue.opacity(0.6), .purple.opacity(0.6)]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: compactMode ? 2 : 3
+                        )
+                        .frame(width: size, height: size)
+                        .scaleEffect(viewModel.circleScale + CGFloat(index) * 0.1)
+                        .opacity(viewModel.circleOpacity - Double(index) * 0.15)
+                        .animation(
+                            .spring(response: 1.2, dampingFraction: 0.7)
+                            .delay(Double(index) * 0.1),
+                            value: viewModel.circleScale
+                        )
+                }
+                
+                // Central breathing phase indicator
+                VStack(spacing: 8) {
+                    Text(viewModel.currentPhase.rawValue)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                    
+                    Text(viewModel.formatTime(viewModel.timeRemaining))
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.blue)
+                        .monospaced()
+                }
+                .animation(.easeInOut(duration: 0.3), value: viewModel.currentPhase)
             }
         }
     }
     
     private func breathingAnimationView(geometry: GeometryProxy) -> some View {
-        let size = min(geometry.size.width * 0.7, 300)
+        let screenHeight = geometry.size.height
+        let screenWidth = geometry.size.width
+        let compactMode = screenHeight < 700
+        
+        // Adaptive sizing based on available space
+        let maxSize = compactMode ? min(screenWidth * 0.6, 200) : min(screenWidth * 0.7, 300)
+        let availableHeight = screenHeight * (compactMode ? 0.25 : 0.35)
+        let size = min(maxSize, availableHeight)
         
         return ZStack {
             // Cercles d'animation
@@ -284,7 +392,7 @@ struct BreathingView: View {
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
-                        lineWidth: 3
+                        lineWidth: compactMode ? 2 : 3
                     )
                     .frame(width: size, height: size)
                     .scaleEffect(viewModel.circleScale + CGFloat(index) * 0.1)
@@ -305,24 +413,25 @@ struct BreathingView: View {
                             phaseColor.opacity(0.6)
                         ]),
                         center: .center,
-                        startRadius: 20,
+                        startRadius: compactMode ? 15 : 20,
                         endRadius: size/2
                     )
                 )
                 .frame(width: size * 0.6, height: size * 0.6)
                 .overlay(
-                    VStack(spacing: 8) {
+                    VStack(spacing: compactMode ? 4 : 8) {
                         Image(systemName: phaseIcon)
-                            .font(.system(size: 30))
+                            .font(.system(size: compactMode ? 24 : 30))
                             .foregroundColor(phaseColor)
                         
                         Text(viewModel.phaseText)
-                            .font(.title3)
+                            .font(compactMode ? .callout : .title3)
                             .fontWeight(.semibold)
                             .foregroundColor(.primary)
                     }
                 )
         }
+        .frame(maxHeight: availableHeight)
     }
     
     private var phaseColor: Color {
@@ -355,35 +464,40 @@ struct BreathingView: View {
         }
     }
     
-    private var instructionsSection: some View {
-        VStack(spacing: 12) {
+    private func instructionsSection(compact: Bool) -> some View {
+        VStack(spacing: compact ? 8 : 12) {
             Text(viewModel.phaseText)
-                .font(.largeTitle)
+                .font(compact ? .title2 : .largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
             
             Text(viewModel.instructionText)
-                .font(.subheadline)
+                .font(compact ? .caption : .subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
+                .lineLimit(compact ? 2 : nil)
         }
     }
     
-    private var sessionControlsSection: some View {
-        HStack(spacing: 24) {
+    private func sessionControlsSection(compact: Bool) -> some View {
+        let buttonWidth: CGFloat = compact ? 100 : 120
+        let buttonHeight: CGFloat = compact ? 40 : 50
+        let spacing: CGFloat = compact ? 16 : 24
+        
+        return HStack(spacing: spacing) {
             if viewModel.breathingState == .running {
                 Button("Pause") {
                     viewModel.pauseSession()
                 }
-                .font(.title3)
+                .font(compact ? .callout : .title3)
                 .fontWeight(.medium)
                 .foregroundColor(.orange)
-                .frame(width: 120, height: 50)
+                .frame(width: buttonWidth, height: buttonHeight)
                 .background(
-                    RoundedRectangle(cornerRadius: 25)
+                    RoundedRectangle(cornerRadius: buttonHeight/2)
                         .fill(Color.orange.opacity(0.1))
                         .overlay(
-                            RoundedRectangle(cornerRadius: 25)
+                            RoundedRectangle(cornerRadius: buttonHeight/2)
                                 .stroke(Color.orange, lineWidth: 2)
                         )
                 )
@@ -391,32 +505,38 @@ struct BreathingView: View {
                 Button("Reprendre") {
                     viewModel.resumeSession()
                 }
-                .font(.title3)
+                .font(compact ? .caption : .title3)
                 .fontWeight(.medium)
                 .foregroundColor(.green)
-                .frame(width: 120, height: 50)
+                .frame(width: buttonWidth, height: buttonHeight)
                 .background(
-                    RoundedRectangle(cornerRadius: 25)
+                    RoundedRectangle(cornerRadius: buttonHeight/2)
                         .fill(Color.green.opacity(0.1))
                         .overlay(
-                            RoundedRectangle(cornerRadius: 25)
+                            RoundedRectangle(cornerRadius: buttonHeight/2)
                                 .stroke(Color.green, lineWidth: 2)
                         )
                 )
             }
             
             Button("Arrêter") {
-                viewModel.stopSession()
+                // Immediate haptic feedback
+                AudioManager.shared.playHapticFeedback()
+                
+                // Immediate UI response
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    viewModel.stopSession()
+                }
             }
-            .font(.title3)
+            .font(compact ? .callout : .title3)
             .fontWeight(.medium)
             .foregroundColor(.red)
-            .frame(width: 120, height: 50)
+            .frame(width: buttonWidth, height: buttonHeight)
             .background(
-                RoundedRectangle(cornerRadius: 25)
+                RoundedRectangle(cornerRadius: buttonHeight/2)
                     .fill(Color.red.opacity(0.1))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 25)
+                        RoundedRectangle(cornerRadius: buttonHeight/2)
                             .stroke(Color.red, lineWidth: 2)
                     )
             )
@@ -449,6 +569,40 @@ struct BreathingView: View {
 }
 
 // Composants auxiliaires
+struct CompactPatternButton: View {
+    let pattern: BreathingPattern
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 6) {
+                Text(pattern.emoji)
+                    .font(.title3)
+                
+                Text(pattern.rawValue)
+                    .font(.caption2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+            }
+            .frame(maxWidth: .infinity, minHeight: 70)
+            .padding(.vertical, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(isSelected ? Color.blue.opacity(0.15) : Color(.tertiarySystemBackground))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                    )
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
 struct BreathingPatternCard: View {
     let pattern: BreathingPattern
     let isSelected: Bool
@@ -468,7 +622,7 @@ struct BreathingPatternCard: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(3)
             }
-            .frame(width: 160, height: 80)
+            .frame(maxWidth: .infinity, minHeight: 70)
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 12)

@@ -185,7 +185,7 @@ struct BreathingSettingsView: View {
                 
                 // Section Statistiques et données
                 Section("Données et statistiques") {
-                    NavigationLink("Voir les statistiques détaillées") {
+                    NavigationLink("Statistiques") {
                         Text("Statistiques de respiration")
                             .font(.subheadline)
                             .foregroundColor(.secondary)

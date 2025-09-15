@@ -12,25 +12,38 @@ struct ThoughtRecordView: View {
     @State private var showingNewRecord = false
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 20) {
+        ZStack {
+            // Background with blur effect for consistency
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.purple.opacity(0.1),
+                    Color.blue.opacity(0.05),
+                    Color.indigo.opacity(0.05)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .overlay(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .opacity(0.3)
+            )
+            .ignoresSafeArea()
+            
+            VStack(spacing: 24) {
                 // Introduction à la TCC
                 introSection
 
                 // Progression de l'utilisateur
                 progressSection
 
-                // Distorsions cognitives communes
-                commonDistortionsSection
-
                 // Enregistrements récents
                 recentRecordsSection
 
-                Spacer(minLength: 100)
+                Spacer(minLength: 20)
             }
             .padding()
         }
-        .scrollBounceBehavior(.basedOnSize)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingNewRecord = true }) {
@@ -103,31 +116,6 @@ struct ThoughtRecordView: View {
         }
     }
     
-    private var commonDistortionsSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Text("Distorsions communes")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-                Spacer()
-                NavigationLink("Tout voir") {
-                    DistortionsGuideView()
-                }
-                .font(.caption)
-                .foregroundColor(.blue)
-            }
-
-            LazyVGrid(columns: [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ], spacing: 8) {
-                ForEach(Array(CognitiveDistortion.allCases.prefix(4)), id: \.self) { distortion in
-                    SimpleDistortionCard(distortion: distortion)
-                }
-            }
-        }
-    }
     
     private var recentRecordsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -274,9 +262,9 @@ struct ThoughtRecordRow: View {
 
             // Émotions en ligne
             HStack(spacing: 12) {
-                if !record.emotionBefore.isEmpty {
+                if let emotionBefore = record.emotionBefore, !emotionBefore.isEmpty {
                     HStack(spacing: 4) {
-                        Text(record.emotionBefore ?? "")
+                        Text(emotionBefore)
                             .font(.caption2)
                             .foregroundColor(.red)
                         Text("\(Int(record.intensityBefore))/10")

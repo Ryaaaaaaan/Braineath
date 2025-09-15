@@ -55,7 +55,7 @@ struct MoodRatingView: View {
                             Text("Humeur")
                         }
                         .accentColor(colorForMood(selectedMood))
-                        .onChange(of: selectedMood) { _ in
+                        .onChange(of: selectedMood) {
                             AudioManager.shared.playHapticFeedback(style: .light)
                         }
                         

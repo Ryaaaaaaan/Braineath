@@ -68,7 +68,7 @@ class AudioManager: NSObject, ObservableObject {
     func playBreathingSound(_ sound: BreathingSound) {
         stopCurrentSound()
         
-        guard sound != .silence, let filename = sound.filename else {
+        guard sound != .silence, let _ = sound.filename else {
             currentSound = sound
             return
         }
@@ -299,9 +299,10 @@ class AudioManager: NSObject, ObservableObject {
         }
     }
     
-    // Génération de vibrations haptiques
+    // Enhanced haptic feedback system
     func playHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle = .light) {
         let impactFeedback = UIImpactFeedbackGenerator(style: style)
+        impactFeedback.prepare() // Pre-warm for better responsiveness
         impactFeedback.impactOccurred()
     }
     

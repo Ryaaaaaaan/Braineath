@@ -79,6 +79,31 @@ class BiometricAuthManager: ObservableObject {
         return biometricType != .none
     }
     
+    func authenticateUser(completion: @escaping (Bool) -> Void) {
+        guard isBiometricAvailable else {
+            authenticationError = "L'authentification biométrique n'est pas disponible sur cet appareil."
+            completion(false)
+            return
+        }
+        
+        let reason = "Utilisez \(biometricTypeDescription) pour déverrouiller Braineath"
+        
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    self.isAuthenticated = true
+                    self.authenticationError = nil
+                    completion(true)
+                } else {
+                    if let error = error {
+                        self.handleAuthenticationError(error)
+                    }
+                    completion(false)
+                }
+            }
+        }
+    }
+    
     func authenticateWithBiometrics() async {
         guard isBiometricAvailable else {
             authenticationError = "L'authentification biométrique n'est pas disponible sur cet appareil."

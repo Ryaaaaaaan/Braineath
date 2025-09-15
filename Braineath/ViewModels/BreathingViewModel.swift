@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import ActivityKit
 
 class BreathingViewModel: ObservableObject {
     @Published var selectedPattern: BreathingPattern = .basic478
@@ -39,6 +40,7 @@ class BreathingViewModel: ObservableObject {
     private let audioManager = AudioManager.shared
     private let dataManager = DataManager.shared
     private var cancellables = Set<AnyCancellable>()
+    private var breathingActivity: Activity<BreathingActivityAttributes>?
     
     // Statistiques de session
     @Published var recentSessions: [BreathingSession] = []
@@ -78,6 +80,7 @@ class BreathingViewModel: ObservableObject {
     func actuallyStartBreathingSession() {
         breathingState = .running
         startTime = Date()
+        startLiveActivity()
         currentCycle = 0
         sessionProgress = 0.0
 
@@ -201,6 +204,7 @@ class BreathingViewModel: ObservableObject {
     private func updateProgress() {
         let totalDuration = Double(sessionDuration * 60)
         sessionProgress = 1.0 - (timeRemaining / totalDuration)
+        updateLiveActivity()
     }
     
     func pauseSession() {
@@ -224,45 +228,58 @@ class BreathingViewModel: ObservableObject {
     }
     
     private func completeSession() {
+        // Immediate UI changes - no delay
         breathingState = .completed
         currentPhase = .complete
         
+        // Stop timers and audio immediately
         phaseTimer?.invalidate()
         breathingTimer?.invalidate()
         audioManager.stopCurrentSound()
         
-        withAnimation(.easeInOut(duration: 1.0)) {
+        // Shorter, snappier animation
+        withAnimation(.easeInOut(duration: 0.4)) {
             circleScale = 1.0
             circleOpacity = 0.8
         }
         
-        // Sauvegarder la session
-        if let startTime = startTime {
-            let actualDuration = Int(Date().timeIntervalSince(startTime))
-            let completionPercentage = sessionProgress * 100
+        // Background operations - don't block UI
+        Task {
+            // Save session in background
+            if let startTime = startTime {
+                let actualDuration = Int(Date().timeIntervalSince(startTime))
+                let completionPercentage = sessionProgress * 100
+                
+                _ = dataManager.createBreathingSession(
+                    pattern: selectedPattern.rawValue,
+                    duration: actualDuration,
+                    completionPercentage: completionPercentage,
+                    moodBefore: moodBefore,
+                    moodAfter: moodAfter
+                )
+            }
             
-            _ = dataManager.createBreathingSession(
-                pattern: selectedPattern.rawValue,
-                duration: actualDuration,
-                completionPercentage: completionPercentage,
-                moodBefore: moodBefore,
-                moodAfter: moodAfter
-            )
+            // Update stats in background
+            await MainActor.run {
+                loadRecentSessions()
+                calculateStats()
+            }
         }
         
-        // Recharger les statistiques
-        loadRecentSessions()
-        calculateStats()
+        // End Live Activity after brief delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.endLiveActivity()
+        }
         
-        // Feedback haptique de succès
+        // Immediate haptic feedback
         if hapticEnabled {
             audioManager.playNotificationHaptic(type: .success)
         }
         
         updatePhaseText()
         
-        // Reset après quelques secondes
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        // Reset after shorter delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.resetSession()
         }
     }
@@ -367,5 +384,93 @@ class BreathingViewModel: ObservableObject {
         let minutes = Int(timeInterval) / 60
         let seconds = Int(timeInterval) % 60
         return String(format: "%d:%02d", minutes, seconds)
+    }
+    
+    // MARK: - Live Activities
+    
+    private func startLiveActivity() {
+        // Check if running in simulator or Live Activities are disabled
+        #if targetEnvironment(simulator)
+        print("Live Activities not supported in Simulator")
+        return
+        #endif
+        
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { 
+            print("Live Activities not enabled")
+            return 
+        }
+        
+        let attributes = BreathingActivityAttributes(
+            sessionType: selectedPattern.rawValue,
+            duration: sessionDuration,
+            startTime: Date()
+        )
+        
+        let contentState = BreathingActivityAttributes.ContentState(
+            currentPhase: currentPhase.rawValue,
+            timeRemaining: Int(timeRemaining),
+            cycleCount: currentCycle,
+            totalCycles: totalCycles,
+            progress: sessionProgress,
+            isActive: true
+        )
+        
+        do {
+            breathingActivity = try Activity<BreathingActivityAttributes>.request(
+                attributes: attributes,
+                content: .init(state: contentState, staleDate: nil)
+            )
+            print("Live Activity started successfully")
+        } catch ActivityError.unsupportedTarget {
+            print("Live Activities unsupported on this target - gracefully continuing without Live Activity")
+        } catch ActivityError.activityDisabled {
+            print("Live Activities disabled by user - gracefully continuing without Live Activity")
+        } catch {
+            print("Error starting Live Activity: \(error) - gracefully continuing without Live Activity")
+        }
+    }
+    
+    private func updateLiveActivity() {
+        guard let activity = breathingActivity else { return }
+        
+        let contentState = BreathingActivityAttributes.ContentState(
+            currentPhase: currentPhase.rawValue,
+            timeRemaining: Int(timeRemaining),
+            cycleCount: currentCycle,
+            totalCycles: totalCycles,
+            progress: sessionProgress,
+            isActive: breathingState == .running
+        )
+        
+        Task {
+            do {
+                await activity.update(.init(state: contentState, staleDate: nil))
+            } catch {
+                print("Error updating Live Activity: \(error)")
+            }
+        }
+    }
+    
+    private func endLiveActivity() {
+        guard let activity = breathingActivity else { return }
+        
+        let contentState = BreathingActivityAttributes.ContentState(
+            currentPhase: "Terminé",
+            timeRemaining: 0,
+            cycleCount: totalCycles,
+            totalCycles: totalCycles,
+            progress: 1.0,
+            isActive: false
+        )
+        
+        Task {
+            do {
+                await activity.end(.init(state: contentState, staleDate: nil), dismissalPolicy: .immediate)
+            } catch {
+                print("Error ending Live Activity: \(error)")
+            }
+        }
+        
+        breathingActivity = nil
     }
 }

@@ -11,9 +11,11 @@ struct BeautifulDashboardView: View {
     @EnvironmentObject var moodViewModel: MoodViewModel
     @EnvironmentObject var breathingViewModel: BreathingViewModel
     @StateObject private var profileManager = UserProfileManager.shared
+    @StateObject private var wellnessViewModel = WellnessViewModel()
     
     @State private var showingQuickBreathing = false
     @State private var showingEmergencyView = false
+    @State private var showingSettings = false
     @State private var currentQuoteIndex = 0
     
     // Animation states
@@ -40,33 +42,39 @@ struct BeautifulDashboardView: View {
                 // Animated breathing background
                 breathingBackground
                 
-                // Main content
+                // Main content - remove ScrollView to prevent horizontal scrolling
                 VStack(spacing: 0) {
                     // Header section
                     Spacer(minLength: geometry.safeAreaInsets.top + 20)
                     
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: 30) {
-                            // Welcome section with greeting
-                            welcomeSection
+                    VStack(spacing: 24) {
+                        // Welcome section with greeting
+                        welcomeSection
+                            .cardEntry(delay: 0.1)
 
-                            // Glowy quote section
-                            quoteSection
+                        // Glowy quote section
+                        quoteSection
+                            .cardEntry(delay: 0.2)
 
-                            // Quick breathing button
-                            quickBreathingButton
+                        // Quick breathing button
+                        quickBreathingButton
+                            .appleStyleButton()
+                            .cardEntry(delay: 0.3)
 
-                            // Compact stats if available
-                            if !moodViewModel.recentMoodEntries.isEmpty {
-                                compactStatsSection
-                            }
-
-                            Spacer(minLength: 100)
+                        // Compact stats if available
+                        if !moodViewModel.recentMoodEntries.isEmpty {
+                            compactStatsSection
+                                .cardEntry(delay: 0.4)
                         }
-                        .padding(.horizontal, 20)
-                        .offset(y: contentOffset)
+                        
+                        // Weekly wellness summary
+                        weeklyWellnessSummary
+                            .cardEntry(delay: 0.5)
+
+                        Spacer(minLength: 20)
                     }
-                    .scrollBounceBehavior(.basedOnSize)
+                    .padding(.horizontal, 20)
+                    .offset(y: contentOffset)
                 }
                 .onAppear {
                     setupInitialState()
@@ -81,61 +89,89 @@ struct BeautifulDashboardView: View {
         .sheet(isPresented: $showingEmergencyView) {
             EmergencyModeView()
         }
+        .sheet(isPresented: $showingSettings) {
+            AppSettingsView()
+                .environmentObject(breathingViewModel)
+                .environmentObject(moodViewModel)
+        }
     }
     
     private var breathingBackground: some View {
         ZStack {
-            // Base gradient
+            // Base gradient with blur effect
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color.blue.opacity(0.1),
-                    Color.purple.opacity(0.05),
+                    Color.blue.opacity(0.15),
+                    Color.purple.opacity(0.08),
                     Color.pink.opacity(0.05)
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
+            .overlay(
+                // Blur overlay
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .opacity(0.3)
+            )
             .ignoresSafeArea()
             
-            // Animated breathing circles
-            ForEach(0..<3, id: \.self) { index in
+            // Fixed animated breathing circles - no position to prevent layout issues
+            ForEach(0..<2, id: \.self) { index in
                 Circle()
                     .fill(
                         RadialGradient(
                             gradient: Gradient(colors: [
-                                Color.blue.opacity(breathingOpacity * 0.3),
-                                Color.blue.opacity(breathingOpacity * 0.1),
+                                Color.blue.opacity(breathingOpacity * 0.2),
+                                Color.blue.opacity(breathingOpacity * 0.05),
                                 Color.clear
                             ]),
                             center: .center,
-                            startRadius: 50,
-                            endRadius: 200
+                            startRadius: 30,
+                            endRadius: 150
                         )
                     )
-                    .frame(width: 300 + CGFloat(index * 100), height: 300 + CGFloat(index * 100))
+                    .frame(width: 200, height: 200)
                     .scaleEffect(breathingScale + CGFloat(index) * 0.1)
                     .opacity(breathingOpacity - Double(index) * 0.1)
-                    .position(x: UIScreen.main.bounds.width * (0.3 + Double(index) * 0.2), 
-                             y: UIScreen.main.bounds.height * (0.4 + Double(index) * 0.1))
-                    .blur(radius: 5 + CGFloat(index * 2))
+                    .blur(radius: 8 + CGFloat(index * 3))
+                    .offset(x: CGFloat(index * 100 - 50), y: CGFloat(index * 50 - 25))
             }
         }
     }
     
     
     private var welcomeSection: some View {
-        VStack(spacing: 12) {
-            // Greeting with user name
-            VStack(spacing: 6) {
-                VStack(spacing: 4) {
-                    Text(greetingMessage)
-                        .font(.system(size: 24, weight: .light, design: .rounded))
-                        .foregroundColor(.secondary)
-                    
-                    Text(profileManager.currentProfile?.name ?? "")
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundColor(.primary)
+        VStack(spacing: 16) {
+            // Settings button in top right corner
+            HStack {
+                Spacer()
+                Button(action: { showingSettings = true }) {
+                    Image(systemName: "gearshape.fill")
+                        .font(.title3)
+                        .foregroundColor(.white.opacity(0.8))
+                        .frame(width: 36, height: 36)
+                        .background(
+                            Circle()
+                                .fill(.white.opacity(0.15))
+                                .shadow(color: .white.opacity(0.3), radius: 8, x: 0, y: 0)
+                                .shadow(color: .black.opacity(0.1), radius: 3, x: 0, y: 1)
+                        )
                 }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding(.top, 10)
+            
+            // Centered greeting section - moved higher
+            VStack(spacing: 6) {
+                Text(greetingMessage)
+                    .font(.system(size: 20, weight: .light, design: .rounded))
+                    .foregroundColor(.secondary)
+                
+                Text(profileManager.currentProfile?.name ?? "")
+                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
                 
                 Text("Comment vous sentez-vous aujourd'hui ?")
                     .font(.subheadline)
@@ -226,7 +262,8 @@ struct BeautifulDashboardView: View {
                 .foregroundColor(.primary)
             
             VStack(spacing: 20) {
-                HStack(spacing: 30) {
+                // Single row to prevent horizontal overflow
+                HStack(spacing: 16) {
                     StatGlass(
                         title: "Humeur",
                         value: String(format: "%.1f", averageMood()),
@@ -240,21 +277,12 @@ struct BeautifulDashboardView: View {
                         subtitle: "jours",
                         color: .orange
                     )
-                }
-                
-                HStack(spacing: 30) {
+                    
                     StatGlass(
                         title: "Sessions",
                         value: "\(breathingViewModel.totalSessions)",
                         subtitle: "total",
                         color: .green
-                    )
-                    
-                    StatGlass(
-                        title: "Minutes",
-                        value: "\(breathingViewModel.totalMinutes)",
-                        subtitle: "total",
-                        color: .blue
                     )
                 }
             }
@@ -299,6 +327,93 @@ struct BeautifulDashboardView: View {
         guard !recentEntries.isEmpty else { return 0 }
         let sum = recentEntries.reduce(0) { $0 + $1.emotionIntensity }
         return Double(sum) / Double(recentEntries.count)
+    }
+    
+    private var weeklyWellnessSummary: some View {
+        VStack(spacing: 16) {
+            HStack {
+                Image(systemName: "chart.line.uptrend.xyaxis")
+                    .foregroundColor(.blue)
+                    .font(.title2)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Résumé hebdomadaire")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    Text("Score moyen: \(String(format: "%.1f", wellnessViewModel.getAverageWellnessScore()))/100")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                
+                Spacer()
+                
+                let trend = wellnessViewModel.getMoodTrend()
+                Image(systemName: trend > 0 ? "arrow.up.right" : trend < 0 ? "arrow.down.right" : "arrow.right")
+                    .foregroundColor(trend > 0 ? .green : trend < 0 ? .red : .orange)
+                    .font(.title3)
+            }
+            
+            // Quick wellness indicators
+            HStack(spacing: 12) {
+                WellnessIndicator(
+                    icon: "brain.head.profile",
+                    value: "\(wellnessViewModel.mindfulnessMinutesThisWeek)",
+                    label: "min méditation",
+                    color: .purple
+                )
+                
+                WellnessIndicator(
+                    icon: "lungs.fill",
+                    value: "\(breathingViewModel.totalSessions)",
+                    label: "sessions",
+                    color: .blue
+                )
+                
+                WellnessIndicator(
+                    icon: "heart.fill",
+                    value: String(format: "%.1f", averageMood()),
+                    label: "humeur",
+                    color: .pink
+                )
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+        )
+    }
+}
+
+struct WellnessIndicator: View {
+    let icon: String
+    let value: String
+    let label: String
+    let color: Color
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Image(systemName: icon)
+                .foregroundColor(color)
+                .font(.callout)
+            
+            Text(value)
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+            
+            Text(label)
+                .font(.caption2)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(color.opacity(0.1))
+        )
     }
 }
 
@@ -391,7 +506,7 @@ struct StatGlass: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
-        .frame(width: 130, height: 90)
+        .frame(maxWidth: .infinity, minHeight: 90)
         .background(
             Circle()
                 .fill(

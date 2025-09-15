@@ -1,0 +1,320 @@
+{
+  "" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath-master.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath-master.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath-master.dia",
+    "emit-module-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath-master.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/BraineathApp.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BraineathApp.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BraineathApp.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BraineathApp.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ContentView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Extensions/Animation+Extensions.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Animation+Extensions.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Animation+Extensions.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Animation+Extensions.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Extensions/Extensions.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Extensions.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Extensions.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Extensions.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/LiveActivities/BreathingActivityAttributes.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingActivityAttributes.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingActivityAttributes.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingActivityAttributes.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Models/EmotionModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmotionModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmotionModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmotionModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Models/UserProfile.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserProfile.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserProfile.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserProfile.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Models/WellnessTracker.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/WellnessTracker.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/WellnessTracker.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/WellnessTracker.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Persistence.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Persistence.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Persistence.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Persistence.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Services/AudioManager.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/AudioManager.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/AudioManager.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/AudioManager.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Services/BiometricAuthManager.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthManager.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthManager.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthManager.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Services/DataManager.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DataManager.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DataManager.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DataManager.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Services/NotificationManager.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NotificationManager.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NotificationManager.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NotificationManager.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Services/UserProfileManager.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserProfileManager.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserProfileManager.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserProfileManager.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/BreathingViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/EmergencyViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/GratitudeViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/IntentionsViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/IntentionsViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/IntentionsViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/IntentionsViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/MoodViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/ThoughtRecordViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecordViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecordViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecordViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/ViewModels/WellnessViewModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/WellnessViewModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/WellnessViewModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/WellnessViewModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/AppSettingsView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/AppSettingsView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/AppSettingsView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/AppSettingsView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BeautifulDashboardView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BeautifulDashboardView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BeautifulDashboardView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BeautifulDashboardView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BiometricAuthView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BreathingSettingsView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BreathingView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/DailyWellnessView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/DashboardView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DashboardView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DashboardView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DashboardView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/DistortionsGuideView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DistortionsGuideView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DistortionsGuideView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DistortionsGuideView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/EmergencyFollowUpView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyFollowUpView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyFollowUpView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyFollowUpView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/EmergencyModeView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyModeView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyModeView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencyModeView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MainTabView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MainTabViewWithNewDashboard.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MoodJournalView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MoodRatingView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/NewMoodEntryView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/NewThoughtRecordView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/OnboardingView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/PrivateSpaceView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/QuickBreathingView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/QuickBreathingView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/QuickBreathingView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/QuickBreathingView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/SecurePrivateSpaceView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SecurePrivateSpaceView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SecurePrivateSpaceView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SecurePrivateSpaceView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/SharedComponents.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SharedComponents.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SharedComponents.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SharedComponents.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/SmartReminderView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SmartReminderView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SmartReminderView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/SmartReminderView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/ThoughtRecordView.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecordView.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecordView.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecordView.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/Achievement+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Achievement+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Achievement+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Achievement+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/Achievement+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Achievement+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Achievement+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Achievement+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/Braineath+CoreDataModel.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath+CoreDataModel.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath+CoreDataModel.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/Braineath+CoreDataModel.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/BreathingSession+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSession+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSession+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSession+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/BreathingSession+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSession+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSession+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSession+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/DailyIntention+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyIntention+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyIntention+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyIntention+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/DailyIntention+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyIntention+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyIntention+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/DailyIntention+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/EmergencySession+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencySession+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencySession+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencySession+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/EmergencySession+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencySession+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencySession+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/EmergencySession+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/GratitudeEntry+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/GratitudeEntry+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/MoodEntry+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodEntry+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodEntry+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodEntry+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/MoodEntry+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodEntry+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodEntry+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/MoodEntry+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/ThoughtRecord+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/ThoughtRecord+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/UserPreferences+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserPreferences+CoreDataClass.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserPreferences+CoreDataClass.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserPreferences+CoreDataClass.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/UserPreferences+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserPreferences+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserPreferences+CoreDataProperties.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/UserPreferences+CoreDataProperties.o"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Release-iphoneos/Braineath.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

@@ -19,37 +19,41 @@ struct MoodJournalView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 20) {
-                // Sélecteur de période
-                timeRangeSelector
+        ZStack {
+            // Background with blur effect for consistency
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.pink.opacity(0.1),
+                    Color.orange.opacity(0.05),
+                    Color.red.opacity(0.05)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .overlay(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .opacity(0.3)
+            )
+            .ignoresSafeArea()
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 16) {
+                    // Sélecteur de période compact
+                    timeRangeSelector
 
-                // Graphique des tendances
-                moodTrendsChart
+                    // Résumé compact avec stats principales
+                    compactStatsSection
 
-                // Résumé de la semaine
-                weekSummary
-
-                // Émotions suggérées
-                if !viewModel.suggestedEmotions.isEmpty {
-                    suggestedEmotionsSection
+                    // Liste des entrées récentes (limitée)
+                    recentEntriesSection
+                    
+                    // Bottom padding
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(height: 20)
                 }
-
-                // Liste des entrées récentes
-                recentEntriesSection
-
-                Spacer(minLength: 100)
-            }
-            .padding()
-        }
-        .scrollBounceBehavior(.basedOnSize)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showingNewEntry = true }) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(.blue)
-                }
+                .padding()
             }
         }
         .sheet(isPresented: $showingNewEntry) {
@@ -60,6 +64,16 @@ struct MoodJournalView: View {
             viewModel.loadRecentMoods()
             viewModel.loadMoodTrends()
         }
+    }
+    
+    private var compactStatsSection: some View {
+        HStack(spacing: 16) {
+            StatCard(title: "Humeur moy.", value: "7.5", color: .pink, icon: "heart.fill")
+            StatCard(title: "Cette semaine", value: "\(viewModel.recentMoodEntries.count)", color: .blue, icon: "calendar")
+            StatCard(title: "Tendance", value: "↗️", color: .green, icon: "chart.line.uptrend.xyaxis")
+        }
+        .padding()
+        .glassBackground()
     }
     
     private var timeRangeSelector: some View {
@@ -201,7 +215,14 @@ struct MoodJournalView: View {
                     .foregroundColor(.blue)
                 Text("Entrées récentes")
                     .font(.headline)
+                
                 Spacer()
+                
+                Button(action: { showingNewEntry = true }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.blue)
+                }
             }
             
             if viewModel.recentMoodEntries.isEmpty {
@@ -414,6 +435,7 @@ struct MoodEntryRow: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
+
 
 #Preview {
     let moodViewModel = MoodViewModel()

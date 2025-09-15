@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Emotion: Identifiable, Codable, Hashable {
-    let id = UUID()
+    var id = UUID()
     let name: String
     let category: EmotionCategory
     let color: String
@@ -77,6 +77,16 @@ enum BreathingPattern: String, CaseIterable, Codable {
             return "Respirations lentes et profondes"
         case .quickCalm:
             return "Technique rapide de 2 minutes"
+        }
+    }
+    
+    var emoji: String {
+        switch self {
+        case .basic478: return "🌬️"
+        case .boxBreathing: return "⏹️"
+        case .coherentBreathing: return "❤️"
+        case .deepBreathing: return "🧘"
+        case .quickCalm: return "⚡"
         }
     }
     

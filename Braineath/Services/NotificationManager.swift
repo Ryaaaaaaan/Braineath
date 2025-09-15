@@ -75,6 +75,11 @@ class NotificationManager: NSObject, ObservableObject {
         content.sound = .default
         content.categoryIdentifier = "BRAINEATH_REMINDER"
         
+        // Add app icon to notification
+        if let iconAttachment = createAppIconAttachment() {
+            content.attachments = [iconAttachment]
+        }
+        
         var dateComponents = DateComponents()
         dateComponents.hour = hour
         dateComponents.minute = minute
@@ -96,6 +101,11 @@ class NotificationManager: NSObject, ObservableObject {
         content.sound = .default
         content.categoryIdentifier = "EMERGENCY_FOLLOWUP"
         
+        // Add app icon to notification
+        if let iconAttachment = createAppIconAttachment() {
+            content.attachments = [iconAttachment]
+        }
+        
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false) // 1 heure après
         let request = UNNotificationRequest(identifier: "emergency-followup-\(UUID())", content: content, trigger: trigger)
         
@@ -107,6 +117,11 @@ class NotificationManager: NSObject, ObservableObject {
         content.title = "🧘‍♀️ Moment respiration"
         content.body = "Il est temps de reprendre quelques respirations conscientes"
         content.sound = .default
+        
+        // Add app icon to notification
+        if let iconAttachment = createAppIconAttachment() {
+            content.attachments = [iconAttachment]
+        }
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(minutes * 60), repeats: false)
         let request = UNNotificationRequest(identifier: "breathing-reminder-\(UUID())", content: content, trigger: trigger)
@@ -120,6 +135,73 @@ class NotificationManager: NSObject, ObservableObject {
     
     func cancelNotification(identifier: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+    
+    private func createAppIconAttachment() -> UNNotificationAttachment? {
+        // Try to get the app icon from bundle first
+        var image: UIImage?
+        
+        // Method 1: Try to get from app icon asset
+        if let bundleIconFiles = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
+           let primaryIcon = bundleIconFiles["CFBundlePrimaryIcon"] as? [String: Any],
+           let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
+           let iconFileName = iconFiles.last {
+            image = UIImage(named: iconFileName)
+        }
+        
+        // Method 2: Try direct asset lookup
+        if image == nil {
+            image = UIImage(named: "Icon-iOS-Default-1024x1024@1x")
+        }
+        
+        // Method 3: Try to get from app icon (may not work)
+        if image == nil {
+            image = UIImage(named: "AppIcon")
+        }
+        
+        // Method 4: Create a simple placeholder if all fails
+        if image == nil {
+            // Create a simple blue circle with brain icon as fallback
+            let size = CGSize(width: 64, height: 64)
+            UIGraphicsBeginImageContextWithOptions(size, false, 0)
+            
+            let context = UIGraphicsGetCurrentContext()
+            context?.setFillColor(UIColor.systemBlue.cgColor)
+            context?.fillEllipse(in: CGRect(origin: .zero, size: size))
+            
+            // Add brain icon
+            let brainIcon = UIImage(systemName: "brain.head.profile.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+            brainIcon?.draw(in: CGRect(x: 16, y: 16, width: 32, height: 32))
+            
+            image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
+        
+        guard let finalImage = image else {
+            print("Failed to create app icon for notification")
+            return nil
+        }
+        
+        let fileManager = FileManager.default
+        let tmpSubFolderName = ProcessInfo.processInfo.globallyUniqueString
+        let tmpSubFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tmpSubFolderName, isDirectory: true)
+        
+        do {
+            try fileManager.createDirectory(at: tmpSubFolderURL, withIntermediateDirectories: true, attributes: nil)
+            let imageFileURL = tmpSubFolderURL.appendingPathComponent("appicon.png")
+            
+            guard let imageData = finalImage.pngData() else { 
+                print("Failed to convert image to PNG data")
+                return nil 
+            }
+            try imageData.write(to: imageFileURL)
+            
+            let attachment = try UNNotificationAttachment(identifier: "appicon", url: imageFileURL, options: nil)
+            return attachment
+        } catch {
+            print("Error creating notification attachment: \(error)")
+            return nil
+        }
     }
 }
 
@@ -141,7 +223,7 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Afficher la notification même si l'app est au premier plan
-        completionHandler([.alert, .badge, .sound])
+        completionHandler([.banner, .badge, .sound])
     }
     
     private func handleNotificationTap(identifier: String) {

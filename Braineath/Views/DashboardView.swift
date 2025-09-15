@@ -167,9 +167,6 @@ struct DashboardView: View {
                     .font(.headline)
                 Spacer()
                 
-                NavigationLink("Voir tout", destination: MoodJournalView().environmentObject(moodViewModel))
-                    .font(.caption)
-                    .foregroundColor(.blue)
             }
             
             if moodViewModel.recentMoodEntries.isEmpty {

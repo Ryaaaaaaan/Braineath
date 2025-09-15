@@ -24,6 +24,9 @@ struct NewThoughtRecordView: View {
     @State private var intensityAfter = 5
     @State private var actionPlan = ""
     
+    // Focus state for keyboard management
+    @FocusState private var isTextFieldFocused: Bool
+    
     enum CBTStep: Int, CaseIterable {
         case situation = 0
         case thought = 1
@@ -91,7 +94,10 @@ struct NewThoughtRecordView: View {
                             completionStep
                         }
                         
-                        Spacer(minLength: 100)
+                        // Extra space for keyboard + navigation buttons
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(height: 160)
                     }
                     .padding()
                 }
@@ -169,6 +175,7 @@ struct NewThoughtRecordView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.purple.opacity(0.3), lineWidth: 1)
                 )
+                .focused($isTextFieldFocused)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Exemples de situations:")
@@ -202,6 +209,7 @@ struct NewThoughtRecordView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.orange.opacity(0.3), lineWidth: 1)
                 )
+                .focused($isTextFieldFocused)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Questions pour identifier vos pensées:")
@@ -236,6 +244,7 @@ struct NewThoughtRecordView: View {
                 
                 TextField("Ex: Anxiété, tristesse, colère...", text: $emotionBefore)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .focused($isTextFieldFocused)
             }
             
             VStack(spacing: 16) {
@@ -351,6 +360,7 @@ struct NewThoughtRecordView: View {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.green.opacity(0.3), lineWidth: 1)
                     )
+                    .focused($isTextFieldFocused)
             }
             
             // Questions guidées
@@ -391,6 +401,7 @@ struct NewThoughtRecordView: View {
             VStack(spacing: 16) {
                 TextField("Nouvelle émotion ressentie", text: $emotionAfter)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .focused($isTextFieldFocused)
                 
                 VStack(spacing: 16) {
                     HStack {
@@ -446,6 +457,7 @@ struct NewThoughtRecordView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.blue.opacity(0.3), lineWidth: 1)
                 )
+                .focused($isTextFieldFocused)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Idées d'actions:")
@@ -544,33 +556,54 @@ struct NewThoughtRecordView: View {
     }
     
     private var navigationButtons: some View {
-        HStack(spacing: 16) {
-            if currentStep.rawValue > 0 {
-                Button("Précédent") {
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        currentStep = CBTStep(rawValue: currentStep.rawValue - 1) ?? .situation
+        VStack(spacing: 12) {
+            // Keyboard close button when focused
+            if isTextFieldFocused {
+                HStack {
+                    Spacer()
+                    Button("Fermer clavier") {
+                        isTextFieldFocused = false
                     }
+                    .font(.subheadline)
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(Color(.tertiarySystemBackground))
+                    .clipShape(Capsule())
                 }
-                .font(.subheadline)
-                .fontWeight(.medium)
-                .foregroundColor(.secondary)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(.quaternarySystemFill))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             
-            Button(nextButtonTitle) {
-                nextAction()
+            // Navigation buttons
+            HStack(spacing: 16) {
+                if currentStep.rawValue > 0 {
+                    Button("Précédent") {
+                        isTextFieldFocused = false
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            currentStep = CBTStep(rawValue: currentStep.rawValue - 1) ?? .situation
+                        }
+                    }
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color(.quaternarySystemFill))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+                
+                Button(nextButtonTitle) {
+                    isTextFieldFocused = false
+                    nextAction()
+                }
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(canProceed ? Color.purple : Color.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .disabled(!canProceed)
             }
-            .font(.subheadline)
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(canProceed ? Color.purple : Color.gray)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .disabled(!canProceed)
         }
         .padding()
         .background(Color(.systemBackground))
@@ -596,12 +629,14 @@ struct NewThoughtRecordView: View {
         case .emotion:
             return !emotionBefore.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         case .distortions:
-            return true // Optionnel
+            return true
         case .reframe:
             return !balancedThought.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         case .outcome:
             return !emotionAfter.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        case .action, .complete:
+        case .action:
+            return true
+        case .complete:
             return true
         }
     }

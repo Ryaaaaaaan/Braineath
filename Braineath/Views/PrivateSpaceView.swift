@@ -16,12 +16,14 @@ struct PrivateSpaceView: View {
         case gratitude = "Gratitude"
         case intentions = "Intentions"
         case reflections = "Réflexions"
+        case settings = "Paramètres"
         
         var icon: String {
             switch self {
             case .gratitude: return "heart.fill"
             case .intentions: return "target"
             case .reflections: return "book.fill"
+            case .settings: return "gearshape.fill"
             }
         }
         
@@ -30,17 +32,35 @@ struct PrivateSpaceView: View {
             case .gratitude: return .pink
             case .intentions: return .blue
             case .reflections: return .purple
+            case .settings: return .gray
             }
         }
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            // Sélecteur d'onglets personnalisé
-            customTabSelector
+        ZStack {
+            // Background with blur effect for consistency
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.green.opacity(0.1),
+                    Color.teal.opacity(0.05),
+                    Color.cyan.opacity(0.05)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .overlay(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .opacity(0.3)
+            )
+            .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                // Sélecteur d'onglets personnalisé
+                customTabSelector
 
-            // Contenu selon l'onglet sélectionné
-            ScrollView {
+                // Contenu selon l'onglet sélectionné
                 VStack(spacing: 24) {
                     switch selectedTab {
                     case .gratitude:
@@ -49,16 +69,17 @@ struct PrivateSpaceView: View {
                         intentionsContent
                     case .reflections:
                         reflectionsContent
+                    case .settings:
+                        settingsContent
                     }
 
-                    Spacer(minLength: 100)
+                    Spacer(minLength: 20)
                 }
                 .padding()
                 .onTapGesture {
                     hideKeyboard()
                 }
             }
-            .scrollBounceBehavior(.basedOnSize)
         }
     }
     
@@ -611,6 +632,96 @@ struct ReflectionPromptCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .buttonStyle(PlainButtonStyle())
+    }
+}
+    
+    private var settingsContent: some View {
+        VStack(spacing: 20) {
+            // Header
+            VStack(spacing: 8) {
+                Image(systemName: "gearshape.2.fill")
+                    .font(.title)
+                    .foregroundColor(.gray)
+                
+                Text("Paramètres & Préférences")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
+            .padding()
+            .glassBackground(.gray)
+            
+            // Settings Options
+            VStack(spacing: 12) {
+                NavigationLink(destination: SmartReminderView()) {
+                    SettingsRow(
+                        icon: "bell.badge.fill",
+                        title: "Rappels intelligents",
+                        subtitle: "Notifications personnalisées",
+                        color: .indigo
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                NavigationLink(destination: BreathingSettingsView()) {
+                    SettingsRow(
+                        icon: "lungs.fill",
+                        title: "Paramètres de respiration",
+                        subtitle: "Sons et durées",
+                        color: .blue
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                NavigationLink(destination: DailyWellnessView()) {
+                    SettingsRow(
+                        icon: "chart.line.uptrend.xyaxis",
+                        title: "Suivi du bien-être",
+                        subtitle: "Analyses et insights",
+                        color: .green
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding()
+            .glassBackground()
+        }
+    }
+
+struct SettingsRow: View {
+    let icon: String
+    let title: String
+    let subtitle: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundColor(color)
+                .frame(width: 30)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color(.tertiarySystemBackground))
+        )
     }
 }
 
