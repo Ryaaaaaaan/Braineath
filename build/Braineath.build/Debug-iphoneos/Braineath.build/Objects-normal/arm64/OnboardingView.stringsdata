@@ -1,0 +1,200 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/OnboardingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Étape %lld sur %lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Précédent",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Terminer",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suivant",
+        "location": {
+          "startingColumn": 74,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bienvenue dans Braineath",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nous allons personnaliser votre expérience en quelques étapes simples pour vous offrir le meilleur accompagnement possible.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Comment souhaitez-vous être appelé(e) ?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nous utiliserons ce prénom pour personnaliser votre expérience.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 150
+        }
+      },
+      {
+        "comment": "",
+        "key": "Votre prénom",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 156
+        }
+      },
+      {
+        "comment": "",
+        "key": "Âge (optionnel)",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quels sont vos objectifs principaux ?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 179
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sélectionnez jusqu'à 3 objectifs qui vous correspondent le mieux.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 184
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quel est votre niveau de stress actuel ?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 211
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sur une échelle de 1 (très détendu) à 10 (très stressé)",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 216
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 241
+        }
+      },
+      {
+        "comment": "",
+        "key": "1",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 223
+        }
+      },
+      {
+        "comment": "",
+        "key": "5",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 227
+        }
+      },
+      {
+        "comment": "",
+        "key": "10",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 231
+        }
+      },
+      {
+        "comment": "",
+        "key": "Votre expérience avec les techniques de bien-être",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 251
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quand préférez-vous pratiquer ?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 291
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sélectionnez vos moments préférés (plusieurs choix possibles)",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Dernière étape !",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 345
+        }
+      },
+      {
+        "comment": "",
+        "key": "Y a-t-il des situations qui vous stressent particulièrement ? (optionnel)",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 350
+        }
+      },
+      {
+        "comment": "",
+        "key": "Exemples : travail, transports, relations sociales...",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 366
+        }
+      }
+    ]
+  },
+  "version": 1
+}

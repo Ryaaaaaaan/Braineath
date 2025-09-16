@@ -1,0 +1,30 @@
+{
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BiometricAuthView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BiometricAuthView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BreathingSettingsView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingSettingsView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BreathingView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/BreathingView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/DailyWellnessView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/DailyWellnessView.swiftdeps"
+  }
+}

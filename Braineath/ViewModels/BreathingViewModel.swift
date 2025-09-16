@@ -421,10 +421,8 @@ class BreathingViewModel: ObservableObject {
                 content: .init(state: contentState, staleDate: nil)
             )
             print("Live Activity started successfully")
-        } catch ActivityError.unsupportedTarget {
-            print("Live Activities unsupported on this target - gracefully continuing without Live Activity")
-        } catch ActivityError.activityDisabled {
-            print("Live Activities disabled by user - gracefully continuing without Live Activity")
+        } catch {
+            print("Error starting Live Activity: \(error) - gracefully continuing without Live Activity")
         } catch {
             print("Error starting Live Activity: \(error) - gracefully continuing without Live Activity")
         }
@@ -443,11 +441,7 @@ class BreathingViewModel: ObservableObject {
         )
         
         Task {
-            do {
-                await activity.update(.init(state: contentState, staleDate: nil))
-            } catch {
-                print("Error updating Live Activity: \(error)")
-            }
+            await activity.update(.init(state: contentState, staleDate: nil))
         }
     }
     
@@ -464,11 +458,7 @@ class BreathingViewModel: ObservableObject {
         )
         
         Task {
-            do {
-                await activity.end(.init(state: contentState, staleDate: nil), dismissalPolicy: .immediate)
-            } catch {
-                print("Error ending Live Activity: \(error)")
-            }
+            await activity.end(.init(state: contentState, staleDate: nil), dismissalPolicy: .immediate)
         }
         
         breathingActivity = nil

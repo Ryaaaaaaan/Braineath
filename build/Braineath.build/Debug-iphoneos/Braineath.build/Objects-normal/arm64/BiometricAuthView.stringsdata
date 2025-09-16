@@ -1,0 +1,48 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BiometricAuthView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Vos données restent privées et sécurisées",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Braineath",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "Votre bien-être mental en sécurité",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Déverrouiller avec %@",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Utiliser le code",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 88
+        }
+      }
+    ]
+  },
+  "version": 1
+}

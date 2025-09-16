@@ -1,0 +1,30 @@
+{
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/GratitudeEntry+CoreDataClass.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataClass.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/GratitudeEntry+CoreDataProperties.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/GratitudeEntry+CoreDataProperties.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/ThoughtRecord+CoreDataClass.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataClass.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/DerivedSources/CoreDataGenerated/Braineath/ThoughtRecord+CoreDataProperties.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/ThoughtRecord+CoreDataProperties.swiftdeps"
+  }
+}

@@ -137,15 +137,30 @@ extension View {
             .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
     }
     
-    func glassEffect() -> some View {
+    func glassBackground(_ color: Color = .clear) -> some View {
         self
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.ultraThinMaterial)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(.white.opacity(0.2), lineWidth: 1)
+                            .fill(color.opacity(0.1))
                     )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.white.opacity(0.15), lineWidth: 1)
+                    )
+                    .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
+            )
+    }
+
+    func modernCard() -> some View {
+        self
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.ultraThinMaterial)
+                    .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
             )
     }
     

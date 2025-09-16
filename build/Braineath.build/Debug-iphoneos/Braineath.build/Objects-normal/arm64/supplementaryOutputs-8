@@ -1,0 +1,30 @@
+{
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MainTabView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MainTabViewWithNewDashboard.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MainTabViewWithNewDashboard.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MoodJournalView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodJournalView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MoodRatingView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/MoodRatingView.swiftdeps"
+  }
+}

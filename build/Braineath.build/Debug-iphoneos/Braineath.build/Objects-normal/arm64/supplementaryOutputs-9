@@ -1,0 +1,30 @@
+{
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/NewMoodEntryView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewMoodEntryView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/NewThoughtRecordView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/NewThoughtRecordView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/OnboardingView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/OnboardingView.swiftdeps"
+  },
+  "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/PrivateSpaceView.swift" : {
+    "const-values" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.swiftconstvalues",
+    "dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.d",
+    "diagnostics" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.dia",
+    "object" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.o",
+    "swift-dependencies" : "/Users/ryan.zemri.ext/DEV/App/Braineath/build/Braineath.build/Debug-iphoneos/Braineath.build/Objects-normal/arm64/PrivateSpaceView.swiftdeps"
+  }
+}

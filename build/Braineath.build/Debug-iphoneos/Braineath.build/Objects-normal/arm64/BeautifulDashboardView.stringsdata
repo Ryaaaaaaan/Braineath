@@ -1,0 +1,48 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BeautifulDashboardView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Comment vous sentez-vous aujourd'hui ?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 164
+        }
+      },
+      {
+        "comment": "",
+        "key": "Respirez, vous êtes exactement là où vous devez être.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Urgence / Crise de panique",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 227
+        }
+      },
+      {
+        "comment": "",
+        "key": "Votre progression",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 253
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cette semaine",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 303
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -47,8 +47,8 @@ struct StatCard: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(Color(.tertiarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .glassBackground(color)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
 

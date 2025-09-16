@@ -1,0 +1,120 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/SmartReminderView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Rappels intelligents",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "Permissions requises",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Paramètres",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 78
+        }
+      },
+      {
+        "comment": "",
+        "key": "Annuler",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Autorisez les notifications pour recevoir des rappels de bien-être personnalisés.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rappels de bien-être",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 95
+        }
+      },
+      {
+        "comment": "",
+        "key": "Recevez des rappels personnalisés pour prendre soin de votre bien-être mental.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 123
+        }
+      },
+      {
+        "comment": "",
+        "key": "Activer les rappels",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "Notifications quotidiennes personnalisées",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 116
+        }
+      },
+      {
+        "comment": "",
+        "key": "Heure du rappel",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Heure",
+        "location": {
+          "startingColumn": 17,
+          "startingLine": 144
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fréquence",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 159
+        }
+      },
+      {
+        "comment": "",
+        "key": "Conseils intelligents",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 208
+        }
+      }
+    ]
+  },
+  "version": 1
+}

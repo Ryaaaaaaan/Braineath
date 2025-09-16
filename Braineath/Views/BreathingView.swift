@@ -94,25 +94,71 @@ struct BreathingView: View {
     private func activeSessionView(geometry: GeometryProxy) -> some View {
         let screenHeight = geometry.size.height
         let compactMode = screenHeight < 700
-        let spacing = compactMode ? 16.0 : 32.0
-        
-        return VStack(spacing: 0) {
-            // Add spacer at top to center content
-            Spacer(minLength: compactMode ? 20 : 40)
-            
-            // Animation de respiration centrale avec countdown circulaire intégré
-            breathingAnimationViewWithCircularProgress(geometry: geometry)
-                .padding(.bottom, compactMode ? 16 : 24)
-            
-            // Instructions et phase actuelle - plus compacte si nécessaire
-            instructionsSection(compact: compactMode)
-                .padding(.bottom, compactMode ? 12 : 16)
-            
-            // Contrôles de session - adaptés
-            sessionControlsSection(compact: compactMode)
-            
-            // Balance with bottom spacer
-            Spacer(minLength: compactMode ? 20 : 40)
+
+        return GeometryReader { fullGeometry in
+            VStack(spacing: 0) {
+                // Top progress section
+                VStack(spacing: 8) {
+                    HStack {
+                        Text("Cycle \(viewModel.currentCycle)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text(viewModel.formatTime(viewModel.timeRemaining))
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                            .monospaced()
+                    }
+
+                    // Session progress bar
+                    GeometryReader { progressGeometry in
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 2)
+                                .fill(Color.gray.opacity(0.2))
+                                .frame(height: 3)
+
+                            RoundedRectangle(cornerRadius: 2)
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.blue, .purple],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .frame(width: progressGeometry.size.width * viewModel.sessionProgress, height: 3)
+                                .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
+                        }
+                    }
+                    .frame(height: 3)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+
+                // Main breathing animation - takes most space
+                Spacer()
+
+                breathingAnimationFullScreen(geometry: fullGeometry)
+
+                // Instructions - minimal
+                VStack(spacing: 8) {
+                    Text(viewModel.instructionText)
+                        .font(.callout)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+
+                Spacer()
+
+                // Controls at bottom - ensure they stay above tab bar
+                sessionControlsSection(compact: compactMode)
+                    .padding(.bottom, max(geometry.safeAreaInsets.bottom + 10, 20))
+                    .background(Color.clear)
+            }
+            .clipped()
         }
     }
     
@@ -288,87 +334,42 @@ struct BreathingView: View {
     }
     
     private func breathingAnimationViewWithCircularProgress(geometry: GeometryProxy) -> some View {
-        let screenHeight = geometry.size.height
         let screenWidth = geometry.size.width
-        let compactMode = screenHeight < 700
-        
-        // Adaptive sizing based on available space
-        let maxSize = compactMode ? min(screenWidth * 0.6, 200) : min(screenWidth * 0.7, 300)
-        let availableHeight = screenHeight * (compactMode ? 0.4 : 0.5)
-        let size = min(maxSize, availableHeight)
-        
-        return VStack(spacing: compactMode ? 16 : 24) {
-            // Cycle info at the top
-            HStack {
-                Text("Cycle \(viewModel.currentCycle)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                Spacer()
-                Text(viewModel.formatTime(viewModel.timeRemaining))
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
-            }
-            .padding(.horizontal)
-            
-            // Main breathing animation with circular progress
-            ZStack {
-                // Circular progress ring (background)
+        let screenHeight = geometry.size.height
+
+        // Use much more of the available space
+        let maxSize = min(screenWidth * 0.8, screenHeight * 0.5)
+
+        return ZStack {
+            // Main breathing circles - larger and more prominent
+            ForEach(0..<4) { index in
                 Circle()
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 6)
-                    .frame(width: size + 40, height: size + 40)
-                
-                // Circular progress ring (foreground)
-                Circle()
-                    .trim(from: 0, to: CGFloat(viewModel.sessionProgress))
                     .stroke(
                         LinearGradient(
-                            gradient: Gradient(colors: [.blue, .purple]),
+                            colors: gradientColorsForIndex(index),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),
-                        style: StrokeStyle(lineWidth: 6, lineCap: .round)
+                        lineWidth: 4 - CGFloat(index)
                     )
-                    .frame(width: size + 40, height: size + 40)
-                    .rotationEffect(.degrees(-90))
-                    .animation(.easeInOut(duration: 0.5), value: viewModel.sessionProgress)
-                
-                // Breathing circles animation
-                ForEach(0..<3) { index in
-                    Circle()
-                        .stroke(
-                            LinearGradient(
-                                gradient: Gradient(colors: [.blue.opacity(0.6), .purple.opacity(0.6)]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: compactMode ? 2 : 3
-                        )
-                        .frame(width: size, height: size)
-                        .scaleEffect(viewModel.circleScale + CGFloat(index) * 0.1)
-                        .opacity(viewModel.circleOpacity - Double(index) * 0.15)
-                        .animation(
-                            .spring(response: 1.2, dampingFraction: 0.7)
-                            .delay(Double(index) * 0.1),
-                            value: viewModel.circleScale
-                        )
-                }
-                
-                // Central breathing phase indicator
-                VStack(spacing: 8) {
-                    Text(viewModel.currentPhase.rawValue)
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                    
-                    Text(viewModel.formatTime(viewModel.timeRemaining))
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                        .monospaced()
-                }
-                .animation(.easeInOut(duration: 0.3), value: viewModel.currentPhase)
+                    .frame(width: maxSize - CGFloat(index * 20), height: maxSize - CGFloat(index * 20))
+                    .scaleEffect(viewModel.circleScale + CGFloat(index) * 0.05)
+                    .opacity(viewModel.circleOpacity - Double(index) * 0.1)
+                    .animation(
+                        .spring(response: 1.0, dampingFraction: 0.8)
+                        .delay(Double(index) * 0.05),
+                        value: viewModel.circleScale
+                    )
             }
+
+            // Central phase display
+            VStack(spacing: 12) {
+                Text(viewModel.currentPhase.rawValue)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+            }
+            .animation(.easeInOut(duration: 0.3), value: viewModel.currentPhase)
         }
     }
     
@@ -464,18 +465,53 @@ struct BreathingView: View {
         }
     }
     
-    private func instructionsSection(compact: Bool) -> some View {
-        VStack(spacing: compact ? 8 : 12) {
-            Text(viewModel.phaseText)
-                .font(compact ? .title2 : .largeTitle)
+    private func breathingAnimationFullScreen(geometry: GeometryProxy) -> some View {
+        let size = min(geometry.size.width * 0.8, geometry.size.height * 0.4)
+
+        return ZStack {
+            // Multiple breathing circles for depth
+            ForEach(0..<4) { index in
+                Circle()
+                    .stroke(
+                        LinearGradient(
+                            colors: gradientColorsForIndex(index),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 5 - CGFloat(index)
+                    )
+                    .frame(width: size - CGFloat(index * 25), height: size - CGFloat(index * 25))
+                    .scaleEffect(viewModel.circleScale + CGFloat(index) * 0.05)
+                    .opacity(viewModel.circleOpacity - Double(index) * 0.1)
+                    .animation(
+                        .spring(response: 1.0, dampingFraction: 0.8)
+                        .delay(Double(index) * 0.05),
+                        value: viewModel.circleScale
+                    )
+            }
+
+            // Central text
+            Text(viewModel.currentPhase.rawValue)
+                .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
-            
+                .animation(.easeInOut(duration: 0.3), value: viewModel.currentPhase)
+        }
+    }
+
+    private func gradientColorsForIndex(_ index: Int) -> [Color] {
+        let baseColors = gradientColors
+        let opacity = 0.8 - Double(index) * 0.15
+        return baseColors.map { $0.opacity(opacity) }
+    }
+
+    private func instructionsSection(compact: Bool) -> some View {
+        VStack(spacing: compact ? 4 : 8) {
             Text(viewModel.instructionText)
-                .font(compact ? .caption : .subheadline)
+                .font(compact ? .callout : .subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-                .lineLimit(compact ? 2 : nil)
+                .lineLimit(2)
         }
     }
     

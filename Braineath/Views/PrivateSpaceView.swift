@@ -11,6 +11,8 @@ struct PrivateSpaceView: View {
     @StateObject private var gratitudeViewModel = GratitudeViewModel()
     @StateObject private var intentionsViewModel = IntentionsViewModel()
     @State private var selectedTab: PrivateTab = .gratitude
+    @FocusState private var isGratitudeFieldFocused: Bool
+    @FocusState private var isIntentionFieldFocused: Bool
     
     enum PrivateTab: String, CaseIterable {
         case gratitude = "Gratitude"
@@ -76,9 +78,6 @@ struct PrivateSpaceView: View {
                     Spacer(minLength: 20)
                 }
                 .padding()
-                .onTapGesture {
-                    hideKeyboard()
-                }
             }
         }
     }
@@ -230,10 +229,13 @@ struct PrivateSpaceView: View {
             
             VStack(spacing: 12) {
                 TextField("Pour quoi êtes-vous reconnaissant(e) ?", text: $gratitudeViewModel.newGratitudeText, axis: .vertical)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(.roundedBorder)
                     .lineLimit(3...6)
+                    .focused($isGratitudeFieldFocused)
+                    .submitLabel(.done)
                     .onSubmit {
                         gratitudeViewModel.addGratitudeEntry()
+                        isGratitudeFieldFocused = false
                     }
                 
                 HStack {
@@ -257,18 +259,23 @@ struct PrivateSpaceView: View {
                         .padding(.horizontal)
                     }
                     
-                    Button("Ajouter") {
-                        gratitudeViewModel.addGratitudeEntry()
-                        AudioManager.shared.playHapticFeedback()
+                    Button(action: {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            gratitudeViewModel.addGratitudeEntry()
+                        }
+                    }) {
+                        Text("Ajouter")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
                     }
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(Color.pink)
-                    .clipShape(Capsule())
-                    .disabled(gratitudeViewModel.newGratitudeText.isEmpty)
+                    .background(
+                        Capsule()
+                            .fill(gratitudeViewModel.newGratitudeText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray : Color.pink)
+                    )
+                    .disabled(gratitudeViewModel.newGratitudeText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
         }
@@ -383,10 +390,13 @@ struct PrivateSpaceView: View {
             
             VStack(spacing: 12) {
                 TextField("Quelle est votre intention pour aujourd'hui ?", text: $intentionsViewModel.newIntentionText, axis: .vertical)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(.roundedBorder)
                     .lineLimit(2...4)
+                    .focused($isIntentionFieldFocused)
+                    .submitLabel(.done)
                     .onSubmit {
                         intentionsViewModel.createIntention()
+                        isIntentionFieldFocused = false
                     }
                 
                 HStack {
@@ -409,18 +419,23 @@ struct PrivateSpaceView: View {
                         .padding(.horizontal)
                     }
                     
-                    Button("Créer") {
-                        intentionsViewModel.createIntention()
-                        AudioManager.shared.playHapticFeedback()
+                    Button(action: {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            intentionsViewModel.createIntention()
+                        }
+                    }) {
+                        Text("Créer")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
                     }
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(Color.blue)
-                    .clipShape(Capsule())
-                    .disabled(intentionsViewModel.newIntentionText.isEmpty)
+                    .background(
+                        Capsule()
+                            .fill(intentionsViewModel.newIntentionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray : Color.blue)
+                    )
+                    .disabled(intentionsViewModel.newIntentionText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
         }
@@ -476,9 +491,6 @@ struct PrivateSpaceView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
-                .onTapGesture {
-                    // Permet de garder le focus sur le TextEditor quand on tape dessus
-                }
             
             HStack {
                 Text("\(intentionsViewModel.freeWritingText.count) caractères")
@@ -487,9 +499,15 @@ struct PrivateSpaceView: View {
                 
                 Spacer()
                 
-                Button("Sauvegarder") {
-                    // Sauvegarder le texte libre
+                Button(action: {
                     AudioManager.shared.playHapticFeedback()
+                    // Sauvegarde du texte libre ici
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }) {
+                    Text("Sauvegarder")
+                        .font(.caption)
+                        .fontWeight(.medium)
+                        .foregroundColor(intentionsViewModel.freeWritingText.isEmpty ? .secondary : .blue)
                 }
                 .font(.caption)
                 .disabled(intentionsViewModel.freeWritingText.isEmpty)
@@ -507,15 +525,13 @@ struct PrivateSpaceView: View {
                 ForEach(intentionsViewModel.reflectionPrompts, id: \.self) { prompt in
                     ReflectionPromptCard(prompt: prompt) {
                         intentionsViewModel.freeWritingText = prompt + "\n\n"
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }
                 }
             }
         }
     }
     
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
 }
 
 // Composants auxiliaires
@@ -652,32 +668,12 @@ struct ReflectionPromptCard: View {
             
             // Settings Options
             VStack(spacing: 12) {
-                NavigationLink(destination: SmartReminderView()) {
-                    SettingsRow(
-                        icon: "bell.badge.fill",
-                        title: "Rappels intelligents",
-                        subtitle: "Notifications personnalisées",
-                        color: .indigo
-                    )
-                }
-                .buttonStyle(PlainButtonStyle())
-                
                 NavigationLink(destination: BreathingSettingsView()) {
                     SettingsRow(
                         icon: "lungs.fill",
                         title: "Paramètres de respiration",
                         subtitle: "Sons et durées",
                         color: .blue
-                    )
-                }
-                .buttonStyle(PlainButtonStyle())
-                
-                NavigationLink(destination: DailyWellnessView()) {
-                    SettingsRow(
-                        icon: "chart.line.uptrend.xyaxis",
-                        title: "Suivi du bien-être",
-                        subtitle: "Analyses et insights",
-                        color: .green
                     )
                 }
                 .buttonStyle(PlainButtonStyle())

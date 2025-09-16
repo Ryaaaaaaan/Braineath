@@ -1,0 +1,360 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/NewThoughtRecordView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "Étape %lld sur %lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "Annuler",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Exemples de situations:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Une conversation difficile avec un collègue",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 187
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Recevoir une critique sur mon travail",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 188
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Voir une publication sur les réseaux sociaux",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 189
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Une situation d'attente ou de retard",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Questions pour identifier vos pensées:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 215
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Qu'est-ce qui m'est passé par la tête ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Que me suis-je dit à moi-même ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 222
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Quelle était ma première réaction ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 223
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Qu'ai-je pensé sur moi, les autres, la situation ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ex: Anxiété, tristesse, colère...",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 245
+        }
+      },
+      {
+        "comment": "",
+        "key": "Émotion ressentie:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 239
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intensité: %lld/10",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 252
+        }
+      },
+      {
+        "comment": "",
+        "key": "Légère",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 275
+        }
+      },
+      {
+        "comment": "",
+        "key": "Très intense",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 279
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sélectionnez les distorsions que vous reconnaissez dans votre pensée:",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pensée automatique:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 316
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suggestion:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 333
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pensée plus équilibrée:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 349
+        }
+      },
+      {
+        "comment": "",
+        "key": "Questions pour vous aider:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 368
+        }
+      },
+      {
+        "comment": "",
+        "key": "• %@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 374
+        }
+      },
+      {
+        "comment": "",
+        "key": "Après avoir reformulé votre pensée:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 388
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nouvelle émotion ressentie",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 402
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nouvelle intensité: %lld/10",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 408
+        }
+      },
+      {
+        "comment": "",
+        "key": "Amélioration de %lld points",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 437
+        }
+      },
+      {
+        "comment": "",
+        "key": "Idées d'actions:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 463
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Parler à quelqu'un de confiance",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 469
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Rechercher des informations objectives",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 470
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Pratiquer une technique de relaxation",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 471
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Faire une activité qui me fait du bien",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 472
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Planifier comment réagir différemment",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 473
+        }
+      },
+      {
+        "comment": "",
+        "key": "Terminer",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 539
+        }
+      },
+      {
+        "comment": "",
+        "key": "Excellent travail !",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 491
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vous avez terminé un exercice de restructuration cognitive. Cette pratique renforce votre capacité à gérer les pensées difficiles.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 496
+        }
+      },
+      {
+        "comment": "",
+        "key": "Amélioration constatée",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 505
+        }
+      },
+      {
+        "comment": "",
+        "key": "Avant",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 511
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/10",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 514
+        }
+      },
+      {
+        "comment": "",
+        "key": "Après",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 524
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/10",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 527
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fermer clavier",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 564
+        }
+      },
+      {
+        "comment": "",
+        "key": "Précédent",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 579
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,112 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/EmergencyFollowUpView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Suivi",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 151
+        }
+      },
+      {
+        "comment": "",
+        "key": "Terminer le suivi",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bien joué !",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vous avez pris soin de vous dans un moment difficile. C'est un acte de courage.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Comment vous sentez-vous maintenant ?",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Niveau de détresse:",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/10",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "Niveau après",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Beaucoup mieux",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "Toujours difficile",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quelles techniques vous ont aidé ?",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "Réflexions (optionnel)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "Prochaines étapes recommandées",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 158
+        }
+      }
+    ]
+  },
+  "version": 1
+}

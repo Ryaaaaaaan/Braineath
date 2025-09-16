@@ -115,23 +115,6 @@ struct AppSettingsView: View {
     
     private var appPreferencesSection: some View {
         Section("Préférences générales") {
-            // App Icon
-            HStack {
-                Image(systemName: "app.badge")
-                    .foregroundColor(.blue)
-                    .frame(width: 24)
-                
-                Text("Icône de l'app")
-                
-                Spacer()
-                
-                Text("Défaut")
-                    .foregroundColor(.secondary)
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
             
             
             // Haptic Feedback
@@ -244,35 +227,6 @@ struct AppSettingsView: View {
     
     private var supportInfoSection: some View {
         Section("Support et informations") {
-            // Help & Tips
-            HStack {
-                Image(systemName: "questionmark.circle")
-                    .foregroundColor(.blue)
-                    .frame(width: 24)
-                
-                Text("Aide et conseils")
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
-            
-            // Contact Support
-            HStack {
-                Image(systemName: "envelope")
-                    .foregroundColor(.purple)
-                    .frame(width: 24)
-                
-                Text("Contacter le support")
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
             
             // About
             HStack {
@@ -293,39 +247,11 @@ struct AppSettingsView: View {
                 showingAbout = true
             }
             
-            // Rate App
-            HStack {
-                Image(systemName: "star")
-                    .foregroundColor(.yellow)
-                    .frame(width: 24)
-                
-                Text("Noter l'application")
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
         }
     }
     
     private var dataManagementSection: some View {
         Section("Gestion des données") {
-            // Export Data
-            HStack {
-                Image(systemName: "square.and.arrow.up")
-                    .foregroundColor(.blue)
-                    .frame(width: 24)
-                
-                Text("Exporter mes données")
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.caption)
-            }
             
             // Reset Settings
             HStack {

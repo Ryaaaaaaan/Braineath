@@ -1,0 +1,192 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/PrivateSpaceView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Journal de gratitude",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Trois choses pour lesquelles vous êtes reconnaissant(e)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intentions quotidiennes",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 164
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cultivez une vie consciente",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Réflexions libres",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 199
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vos pensées et insights personnels",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 204
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ajouter une gratitude",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pour quoi êtes-vous reconnaissant(e) ?",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 231
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ajouter",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 267
+        }
+      },
+      {
+        "comment": "",
+        "key": "Récentes gratitudes",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 311
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ajoutez votre première gratitude",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 321
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aucune intention définie pour aujourd'hui",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intention d'aujourd'hui",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 344
+        }
+      },
+      {
+        "comment": "",
+        "key": "Nouvelle intention",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 385
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quelle est votre intention pour aujourd'hui ?",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 392
+        }
+      },
+      {
+        "comment": "",
+        "key": "Créer",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 427
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intentions récentes",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 446
+        }
+      },
+      {
+        "comment": "",
+        "key": "Créez votre première intention",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 456
+        }
+      },
+      {
+        "comment": "",
+        "key": "Écriture libre",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 479
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld caractères",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 496
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sauvegarder",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 507
+        }
+      },
+      {
+        "comment": "",
+        "key": "Prompts de réflexion",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 520
+        }
+      },
+      {
+        "comment": "",
+        "key": "Paramètres & Préférences",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 662
+        }
+      }
+    ]
+  },
+  "version": 1
+}

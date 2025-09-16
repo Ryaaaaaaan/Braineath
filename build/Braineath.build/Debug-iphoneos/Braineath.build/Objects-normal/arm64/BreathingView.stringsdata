@@ -1,0 +1,120 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BreathingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Cycle %lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pattern de respiration",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 193
+        }
+      },
+      {
+        "comment": "",
+        "key": "Durée",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld min",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 225
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lldm",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "Commencer",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 263
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cycle %lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 285
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pause",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 525
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reprendre",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 541
+        }
+      },
+      {
+        "comment": "",
+        "key": "Arrêter",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 558
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sessions récentes",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 584
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aucune session pour le moment",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 589
+        }
+      },
+      {
+        "comment": "",
+        "key": "%d:%@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 701
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld%%",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 706
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,216 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/NewMoodEntryView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Étape %lld sur %lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 106
+        }
+      },
+      {
+        "comment": "",
+        "key": "Annuler",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suggestions pour vous",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intensité: %lld/10",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 214
+        }
+      },
+      {
+        "comment": "",
+        "key": "Léger",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 225
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intense",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ajouter qualité du sommeil",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "Déclencheurs (optionnel)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 286
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vos pensées",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 303
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suggestions d'écriture:",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 324
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Qu'est-ce qui a déclenché cette émotion ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 330
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Comment votre corps réagit-il ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 331
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Y a-t-il quelque chose que vous aimeriez changer ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 332
+        }
+      },
+      {
+        "comment": "",
+        "key": "• Qu'avez-vous appris sur vous aujourd'hui ?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 333
+        }
+      },
+      {
+        "comment": "",
+        "key": "Continuer",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 388
+        }
+      },
+      {
+        "comment": "",
+        "key": "Entrée sauvegardée !",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 351
+        }
+      },
+      {
+        "comment": "",
+        "key": "Merci de prendre soin de votre bien-être mental.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 356
+        }
+      },
+      {
+        "comment": "",
+        "key": "« %@ »",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 376
+        }
+      },
+      {
+        "comment": "",
+        "key": "(%lld/10)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 370
+        }
+      },
+      {
+        "comment": "",
+        "key": "Précédent",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 410
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intensité",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 548
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 554
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/10",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 582
+        }
+      },
+      {
+        "comment": "",
+        "key": "Autre déclencheur...",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 639
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ajouter",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 648
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,96 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/MoodRatingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "Comment vous sentez-vous ?",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Comment vous sentez-vous maintenant ?",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Avant de commencer",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Après la session",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/10",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Humeur",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Très mal",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "Excellent",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Passer",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Confirmer",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 111
+        }
+      }
+    ]
+  },
+  "version": 1
+}

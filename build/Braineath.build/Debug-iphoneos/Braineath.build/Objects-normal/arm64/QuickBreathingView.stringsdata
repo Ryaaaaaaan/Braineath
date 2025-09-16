@@ -1,0 +1,64 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/QuickBreathingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Respiration Rapide",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "2 minutes de calme",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cycle %lld / %lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 125
+        }
+      },
+      {
+        "comment": "",
+        "key": "Commencer",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "Arrêter",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fermer",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 180
+        }
+      }
+    ]
+  },
+  "version": 1
+}

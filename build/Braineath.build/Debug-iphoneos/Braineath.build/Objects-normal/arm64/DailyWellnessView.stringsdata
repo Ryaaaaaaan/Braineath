@@ -1,0 +1,160 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/DailyWellnessView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Bien-être quotidien",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Score de bien-être",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aujourd'hui",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "/100",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "Check-in rapide",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 151
+        }
+      },
+      {
+        "comment": "",
+        "key": "Suggestions personnalisées",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 215
+        }
+      },
+      {
+        "comment": "",
+        "key": "Résumé hebdomadaire",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 256
+        }
+      },
+      {
+        "comment": "",
+        "key": "Voir vos tendances et analyses",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 261
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/10",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 305
+        }
+      },
+      {
+        "comment": "",
+        "key": "Résumé hebdomadaire",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 357
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fermer",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "Moyenne de la semaine",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 370
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tendance positive",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tendance négative",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stable",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "Insights personnalisés",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 401
+        }
+      },
+      {
+        "comment": "",
+        "key": "Continuez à enregistrer vos données pour recevoir des insights personnalisés.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 406
+        }
+      },
+      {
+        "comment": "",
+        "key": "💡 %@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 444
+        }
+      }
+    ]
+  },
+  "version": 1
+}

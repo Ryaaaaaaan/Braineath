@@ -1,0 +1,424 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/BreathingSettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Paramètres respiration",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 236
+        }
+      },
+      {
+        "comment": "",
+        "key": "Audio",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retours haptiques",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Patterns de respiration",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "Durées de session",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 117
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rappels de respiration",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 161
+        }
+      },
+      {
+        "comment": "",
+        "key": "Données et statistiques",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 187
+        }
+      },
+      {
+        "comment": "",
+        "key": "Réinitialisation",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 220
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sons activés",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Son d'ambiance",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Son d'ambiance",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Arrêter l'aperçu",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tester le son",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Volume: %lld%%",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Volume",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vibrations activées",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "Les vibrations vous aident à suivre les transitions de respiration",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tester les vibrations",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pattern par défaut",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pattern par défaut",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "Durée par défaut",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 119
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sessions recommandées :",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld minutes",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lldm",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 144
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rappels quotidiens",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 162
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fréquence des rappels",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 165
+        }
+      },
+      {
+        "comment": "",
+        "key": "Les rappels vous encouragent à maintenir une pratique régulière de respiration consciente.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fréquence",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Jamais",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quotidien",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 171
+        }
+      },
+      {
+        "comment": "",
+        "key": "2x par jour",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 172
+        }
+      },
+      {
+        "comment": "",
+        "key": "3x par jour",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 173
+        }
+      },
+      {
+        "comment": "",
+        "key": "Statistiques",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 188
+        }
+      },
+      {
+        "comment": "",
+        "key": "Statistiques de respiration",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 189
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sessions enregistrées",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 198
+        }
+      },
+      {
+        "comment": "",
+        "key": "Minutes totales",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 205
+        }
+      },
+      {
+        "comment": "",
+        "key": "Série actuelle",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 210
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld jours",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 212
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ces actions sont irréversibles.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 231
+        }
+      },
+      {
+        "comment": "",
+        "key": "Réinitialiser les préférences",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "Effacer toutes les sessions",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "Terminé",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 240
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sécurité et confidentialité",
+        "location": {
+          "startingColumn": 17,
+          "startingLine": 272
+        }
+      },
+      {
+        "comment": "",
+        "key": "L'application se verrouillera automatiquement lorsque vous la quittez et nécessitera une authentification pour la rouvrir.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "Verrouillage par %@",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 284
+        }
+      },
+      {
+        "comment": "",
+        "key": "Protégez vos données personnelles",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 287
+        }
+      },
+      {
+        "comment": "",
+        "key": "Configurez Face ID ou Touch ID dans les Réglages pour sécuriser l'application.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 310
+        }
+      },
+      {
+        "comment": "",
+        "key": "Authentification biométrique non disponible",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 306
+        }
+      },
+      {
+        "comment": "",
+        "key": "Toutes vos données sont stockées localement sur votre appareil et ne sont jamais partagées.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 326
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vos données restent privées",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 322
+        }
+      }
+    ]
+  },
+  "version": 1
+}

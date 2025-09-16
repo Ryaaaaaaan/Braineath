@@ -1,0 +1,96 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/DistortionsGuideView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Guide des distorsions",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rechercher une distortion...",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "Effacer",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "Les distorsions cognitives sont des patterns de pensée inexacts ou négatifs qui peuvent influencer nos émotions et comportements. Apprendre à les reconnaître est la première étape pour développer une pensée plus équilibrée.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld distorsions courantes",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "À propos des distorsions cognitives",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "Exemples de pensées:",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Questions pour contrer cette distorsion:",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 164
+        }
+      },
+      {
+        "comment": "",
+        "key": "?",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 171
+        }
+      },
+      {
+        "comment": "",
+        "key": "Alternative plus équilibrée:",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 183
+        }
+      }
+    ]
+  },
+  "version": 1
+}

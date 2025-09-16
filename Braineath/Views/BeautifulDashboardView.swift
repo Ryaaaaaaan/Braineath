@@ -24,17 +24,6 @@ struct BeautifulDashboardView: View {
     @State private var quoteOpacity: Double = 1.0
     @State private var contentOffset: CGFloat = 0
     
-    // Sélectionne une citation basée sur le jour du mois pour une rotation lente
-    // Assure que l'utilisateur voit la même citation pendant toute la journée
-    private var currentQuote: String {
-        let quotes = profileManager.getPersonalizedQuotes()
-        guard !quotes.isEmpty else { return "Respirez, vous êtes exactement là où vous devez être." }
-
-        // Rotation basée sur le jour du mois - change une fois par jour maximum
-        let day = Calendar.current.component(.day, from: Date())
-        let index = day % quotes.count
-        return quotes[index]
-    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -42,33 +31,31 @@ struct BeautifulDashboardView: View {
                 // Animated breathing background
                 breathingBackground
                 
-                // Main content - remove ScrollView to prevent horizontal scrolling
+                // Main content - single page without scrolling
                 VStack(spacing: 0) {
-                    // Header section
-                    Spacer(minLength: geometry.safeAreaInsets.top + 20)
-                    
-                    VStack(spacing: 24) {
-                        // Welcome section with greeting
+                    // Header section - compact
+                    Spacer(minLength: geometry.safeAreaInsets.top + 10)
+
+                    VStack(spacing: 20) {
+                        // Welcome section with greeting - more compact
                         welcomeSection
                             .cardEntry(delay: 0.1)
 
-                        // Glowy quote section
+                        // Glowy quote section - compact
                         quoteSection
                             .cardEntry(delay: 0.2)
 
-                        // Quick breathing button
+                        // Quick breathing button - smaller
                         quickBreathingButton
                             .appleStyleButton()
                             .cardEntry(delay: 0.3)
 
-                        // Compact stats if available
-                        if !moodViewModel.recentMoodEntries.isEmpty {
-                            compactStatsSection
-                                .cardEntry(delay: 0.4)
-                        }
-                        
-                        // Weekly wellness summary
-                        weeklyWellnessSummary
+                        // Stats section - compact glowy design
+                        progressSection
+                            .cardEntry(delay: 0.4)
+
+                        // Additional progress info at bottom
+                        additionalProgressSection
                             .cardEntry(delay: 0.5)
 
                         Spacer(minLength: 20)
@@ -143,44 +130,45 @@ struct BeautifulDashboardView: View {
     
     private var welcomeSection: some View {
         VStack(spacing: 16) {
-            // Settings button in top right corner
+            // Settings button in top right corner - smaller
             HStack {
                 Spacer()
                 Button(action: { showingSettings = true }) {
                     Image(systemName: "gearshape.fill")
-                        .font(.title3)
+                        .font(.callout)
                         .foregroundColor(.white.opacity(0.8))
-                        .frame(width: 36, height: 36)
+                        .frame(width: 28, height: 28)
                         .background(
                             Circle()
                                 .fill(.white.opacity(0.15))
-                                .shadow(color: .white.opacity(0.3), radius: 8, x: 0, y: 0)
-                                .shadow(color: .black.opacity(0.1), radius: 3, x: 0, y: 1)
+                                .shadow(color: .white.opacity(0.3), radius: 6, x: 0, y: 0)
+                                .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
                         )
                 }
                 .buttonStyle(PlainButtonStyle())
             }
-            .padding(.top, 10)
+            .padding(.top, 5)
             
-            // Centered greeting section - moved higher
-            VStack(spacing: 6) {
+            // Centered greeting section - more compact
+            VStack(spacing: 4) {
                 Text(greetingMessage)
-                    .font(.system(size: 20, weight: .light, design: .rounded))
+                    .font(.system(size: 18, weight: .light, design: .rounded))
                     .foregroundColor(.secondary)
-                
+
                 Text(profileManager.currentProfile?.name ?? "")
-                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                    .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
-                
+                    .shadow(color: .blue.opacity(0.2), radius: 4, x: 0, y: 2)
+
                 Text("Comment vous sentez-vous aujourd'hui ?")
-                    .font(.subheadline)
+                    .font(.caption)
                     .foregroundColor(.secondary)
                     .opacity(0.8)
             }
             .multilineTextAlignment(.center)
         }
-        .padding(.top, 20)
+        .padding(.top, 10)
     }
     
     private var greetingMessage: String {
@@ -198,47 +186,50 @@ struct BeautifulDashboardView: View {
     }
     
     private var quoteSection: some View {
-        VStack(spacing: 20) {
-            Text(currentQuote)
-                .font(.title2)
+        VStack(spacing: 8) {
+            Text("Respirez, vous êtes exactement là où vous devez être.")
+                .font(.title3)
                 .fontWeight(.medium)
                 .italic()
                 .multilineTextAlignment(.center)
                 .foregroundColor(.primary)
-                .opacity(quoteOpacity)
-                .padding(.horizontal, 20)
+                .lineLimit(2)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
                 .background(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 16)
                         .fill(
                             LinearGradient(
                                 colors: [
-                                    Color.white.opacity(0.3),
-                                    Color.blue.opacity(0.1)
+                                    Color.white.opacity(0.15),
+                                    Color.blue.opacity(0.03)
                                 ],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .blur(radius: 10)
-                        .opacity(0.7)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        )
                 )
-                .shadow(color: .blue.opacity(0.3), radius: 20, x: 0, y: 10)
+                .shadow(color: .blue.opacity(0.1), radius: 6, x: 0, y: 3)
         }
     }
     
     private var quickBreathingButton: some View {
         Button(action: { showingEmergencyView = true }) {
-            HStack(spacing: 12) {
+            HStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.title2)
+                    .font(.callout)
                     .foregroundColor(.white)
-                
+
                 Text("Urgence / Crise de panique")
-                    .font(.headline)
+                    .font(.subheadline)
                     .foregroundColor(.white)
             }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 16)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
             .background(
                 Capsule()
                     .fill(
@@ -249,42 +240,45 @@ struct BeautifulDashboardView: View {
                         )
                     )
             )
-            .shadow(color: .red.opacity(0.6), radius: 15, x: 0, y: 8)
-            .shadow(color: .red.opacity(0.4), radius: 25, x: 0, y: 0)
+            .shadow(color: .red.opacity(0.6), radius: 12, x: 0, y: 6)
+            .shadow(color: .red.opacity(0.4), radius: 20, x: 0, y: 0)
         }
         .buttonStyle(PlainButtonStyle())
     }
     
-    private var compactStatsSection: some View {
+    private var progressSection: some View {
         VStack(spacing: 20) {
-            Text("Votre progression")
-                .font(.headline)
-                .foregroundColor(.primary)
-            
-            VStack(spacing: 20) {
-                // Single row to prevent horizontal overflow
-                HStack(spacing: 16) {
-                    StatGlass(
-                        title: "Humeur",
-                        value: String(format: "%.1f", averageMood()),
-                        subtitle: "/10",
-                        color: .pink
-                    )
-                    
-                    StatGlass(
-                        title: "Série",
-                        value: "\(breathingViewModel.streakDays)",
-                        subtitle: "jours",
-                        color: .orange
-                    )
-                    
-                    StatGlass(
-                        title: "Sessions",
-                        value: "\(breathingViewModel.totalSessions)",
-                        subtitle: "total",
-                        color: .green
-                    )
-                }
+            HStack {
+                Spacer()
+                Text("Votre progression")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.primary)
+                Spacer()
+            }
+
+            // Single row to prevent scrolling - compact glowy stats
+            HStack(spacing: 16) {
+                StatGlass(
+                    title: "Humeur",
+                    value: moodViewModel.recentMoodEntries.isEmpty ? "--" : String(format: "%.1f", averageMood()),
+                    subtitle: moodViewModel.recentMoodEntries.isEmpty ? "" : "/10",
+                    color: .pink
+                )
+
+                StatGlass(
+                    title: "Série",
+                    value: "\(breathingViewModel.streakDays)",
+                    subtitle: "jours",
+                    color: .orange
+                )
+
+                StatGlass(
+                    title: "Sessions",
+                    value: "\(breathingViewModel.totalSessions)",
+                    subtitle: "total",
+                    color: .green
+                )
             }
         }
     }
@@ -302,23 +296,48 @@ struct BeautifulDashboardView: View {
         }
     }
     
+    private var additionalProgressSection: some View {
+        VStack(spacing: 16) {
+            HStack {
+                Spacer()
+                Text("Cette semaine")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                Spacer()
+            }
+
+            HStack(spacing: 16) {
+                AdditionalStatGlass(
+                    title: "Exercice",
+                    value: "\(breathingViewModel.totalMinutesThisWeek)",
+                    subtitle: "minutes",
+                    color: .cyan,
+                    icon: "clock.fill"
+                )
+
+                AdditionalStatGlass(
+                    title: "Journal",
+                    value: "\(moodViewModel.recentMoodEntries.count)",
+                    subtitle: "entrées",
+                    color: .purple,
+                    icon: "book.fill"
+                )
+            }
+        }
+    }
+
     // Lance les animations de fond pour créer une atmosphère apaisante
     // La respiration de fond aide à induire un état de calme chez l'utilisateur
     private func startAnimations() {
-        // Animation de respiration lente en arrière-plan
-        withAnimation(.easeInOut(duration: 5.0).repeatForever(autoreverses: true)) {
-            breathingScale = 1.2
-            breathingOpacity = 0.5
+        // Animation de respiration très lente en arrière-plan (plus douce)
+        withAnimation(.easeInOut(duration: 8.0).repeatForever(autoreverses: true)) {
+            breathingScale = 1.15
+            breathingOpacity = 0.4
         }
 
         // Animation d'apparition progressive des éléments
-        withAnimation(.easeOut(duration: 1.0).delay(0.2)) {
+        withAnimation(.easeOut(duration: 1.2).delay(0.3)) {
             contentOffset = 0
-        }
-
-        // Transition douce pour l'affichage de la citation
-        withAnimation(.easeInOut(duration: 0.8)) {
-            quoteOpacity = 1.0
         }
     }
     
@@ -329,203 +348,121 @@ struct BeautifulDashboardView: View {
         return Double(sum) / Double(recentEntries.count)
     }
     
-    private var weeklyWellnessSummary: some View {
-        VStack(spacing: 16) {
-            HStack {
-                Image(systemName: "chart.line.uptrend.xyaxis")
-                    .foregroundColor(.blue)
-                    .font(.title2)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Résumé hebdomadaire")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    
-                    Text("Score moyen: \(String(format: "%.1f", wellnessViewModel.getAverageWellnessScore()))/100")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                let trend = wellnessViewModel.getMoodTrend()
-                Image(systemName: trend > 0 ? "arrow.up.right" : trend < 0 ? "arrow.down.right" : "arrow.right")
-                    .foregroundColor(trend > 0 ? .green : trend < 0 ? .red : .orange)
-                    .font(.title3)
-            }
-            
-            // Quick wellness indicators
-            HStack(spacing: 12) {
-                WellnessIndicator(
-                    icon: "brain.head.profile",
-                    value: "\(wellnessViewModel.mindfulnessMinutesThisWeek)",
-                    label: "min méditation",
-                    color: .purple
-                )
-                
-                WellnessIndicator(
-                    icon: "lungs.fill",
-                    value: "\(breathingViewModel.totalSessions)",
-                    label: "sessions",
-                    color: .blue
-                )
-                
-                WellnessIndicator(
-                    icon: "heart.fill",
-                    value: String(format: "%.1f", averageMood()),
-                    label: "humeur",
-                    color: .pink
-                )
-            }
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
-                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
-        )
-    }
 }
 
-struct WellnessIndicator: View {
-    let icon: String
-    let value: String
-    let label: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Image(systemName: icon)
-                .foregroundColor(color)
-                .font(.callout)
-            
-            Text(value)
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundColor(.primary)
-            
-            Text(label)
-                .font(.caption2)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 8)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(color.opacity(0.1))
-        )
-    }
-}
 
-struct QuickActionGlass: View {
-    let title: String
-    let subtitle: String
-    let icon: String
-    let color: Color
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 12) {
-                Image(systemName: icon)
-                    .font(.title)
-                    .foregroundColor(color)
-                
-                VStack(spacing: 2) {
-                    Text(title)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                    
-                    Text(subtitle)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-            }
-            .frame(width: 100, height: 80)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color.white.opacity(0.3),
-                                color.opacity(0.1)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .blur(radius: 10)
-                    .opacity(0.8)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(
-                        LinearGradient(
-                            colors: [
-                                Color.white.opacity(0.5),
-                                color.opacity(0.3)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 1
-                    )
-            )
-            .shadow(color: color.opacity(0.2), radius: 15, x: 0, y: 8)
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
 
 struct StatGlass: View {
     let title: String
     let value: String
     let subtitle: String
     let color: Color
-    
+
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: title == "Humeur" ? "heart.fill" : "flame.fill")
-                .font(.title)
+            Image(systemName: iconForTitle(title))
+                .font(.title2)
                 .foregroundColor(color)
-            
+
             HStack(alignment: .bottom, spacing: 2) {
                 Text(value)
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
-                
+
                 Text(subtitle)
                     .font(.caption)
                     .foregroundColor(.secondary)
                     .offset(y: -2)
             }
-            
+
             Text(title)
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
-        .frame(maxWidth: .infinity, minHeight: 90)
+        .frame(maxWidth: .infinity, minHeight: 85)
         .background(
             Circle()
                 .fill(
                     RadialGradient(
                         colors: [
-                            color.opacity(0.4),
-                            color.opacity(0.2),
+                            color.opacity(0.5),
+                            color.opacity(0.3),
                             color.opacity(0.1),
                             Color.clear
                         ],
                         center: .center,
                         startRadius: 10,
-                        endRadius: 80
+                        endRadius: 70
                     )
                 )
                 .blur(radius: 15)
                 .scaleEffect(1.2)
         )
-        .shadow(color: color.opacity(0.4), radius: 20, x: 0, y: 10)
+        .shadow(color: color.opacity(0.6), radius: 20, x: 0, y: 10)
+        .shadow(color: color.opacity(0.4), radius: 30, x: 0, y: 0)
+    }
+
+    private func iconForTitle(_ title: String) -> String {
+        switch title {
+        case "Humeur": return "heart.fill"
+        case "Série": return "flame.fill"
+        case "Sessions": return "lungs.fill"
+        default: return "chart.bar.fill"
+        }
+    }
+}
+
+struct AdditionalStatGlass: View {
+    let title: String
+    let value: String
+    let subtitle: String
+    let color: Color
+    let icon: String
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundColor(color)
+
+            HStack(alignment: .bottom, spacing: 2) {
+                Text(value)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .offset(y: -2)
+            }
+
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, minHeight: 85)
+        .background(
+            Circle()
+                .fill(
+                    RadialGradient(
+                        colors: [
+                            color.opacity(0.5),
+                            color.opacity(0.3),
+                            color.opacity(0.1),
+                            Color.clear
+                        ],
+                        center: .center,
+                        startRadius: 10,
+                        endRadius: 70
+                    )
+                )
+                .blur(radius: 15)
+                .scaleEffect(1.2)
+        )
+        .shadow(color: color.opacity(0.6), radius: 20, x: 0, y: 10)
+        .shadow(color: color.opacity(0.4), radius: 30, x: 0, y: 0)
     }
 }
 

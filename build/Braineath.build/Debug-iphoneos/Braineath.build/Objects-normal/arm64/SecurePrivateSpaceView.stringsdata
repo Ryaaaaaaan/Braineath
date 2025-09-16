@@ -1,0 +1,192 @@
+{
+  "source": "/Users/ryan.zemri.ext/DEV/App/Braineath/Braineath/Views/SecurePrivateSpaceView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Pensées",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bien-être privé",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Espace Privé Sécurisé",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vos pensées et réflexions personnelles sont protégées par %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "Déverrouiller avec %@",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 148
+        }
+      },
+      {
+        "comment": "",
+        "key": "Authentification biométrique non disponible",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "Accéder sans protection",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 171
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restructuration Cognitive",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 219
+        }
+      },
+      {
+        "comment": "",
+        "key": "Analysez et transformez vos pensées",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Commencez votre premier enregistrement de pensées",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 246
+        }
+      },
+      {
+        "comment": "",
+        "key": "La restructuration cognitive vous aide à identifier et modifier les pensées négatives",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 251
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 314
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intensité",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 319
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bien-être Privé",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 370
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gratitude et intentions personnelles",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 375
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pour quoi êtes-vous reconnaissant aujourd'hui ?",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 422
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gratitude du jour",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 416
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ajouter",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 439
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fermer",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 454
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quelle est votre intention pour aujourd'hui ?",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 515
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intention du jour",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 509
+        }
+      },
+      {
+        "comment": "",
+        "key": "Définir",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 532
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fermer",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 547
+        }
+      }
+    ]
+  },
+  "version": 1
+}
